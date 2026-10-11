@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* Brand tokens, carried over from the current COOCASE site. */
+@theme {
+  --color-brand-red: #fb0015;
+  --color-brand-red-dark: #c80012;
+  --color-brand-carbon: #121212;
+  --color-brand-graphite: #1c1c1c;
+  --color-brand-white: #fefefe;
+  --color-brand-mist: #f4f4f5;
+  --color-brand-line: #e5e7eb;
+  --color-brand-steel: #6b7280;
+
+  --font-sans: var(--font-inter), "PingFang SC", "Hiragino Sans", "Microsoft YaHei", "Noto Sans", system-ui, sans-serif;
+  --font-display: var(--font-rajdhani), "PingFang SC", "Hiragino Sans", "Microsoft YaHei", var(--font-inter), sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, "PingFang SC", "Hiragino Sans", monospace;
+
+  --animate-marquee: marquee 40s linear infinite;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-brand-white);
+  color: var(--color-brand-carbon);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Small mono label used across the site ("EST. 2006 · SINGAPORE"). */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-brand-red);
+}
+
+/* CJK scripts have no capitals and need normal tracking. */
+:lang(zh) .eyebrow,
+:lang(ja) .eyebrow {
+  letter-spacing: 0.1em;
+}
+
+.clip-slant {
+  clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Leaflet: tone the OSM tiles down to match the monochrome brand. */
+.map-tiles-mono {
+  filter: grayscale(1) contrast(0.95) brightness(1.03);
+}
+.leaflet-container {
+  font-family: var(--font-sans);
+  background: #e9eaec;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 0;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.15);
+}
+.leaflet-popup-content {
+  margin: 14px 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* CJK display headings need more breathing room than tight Latin caps. */
+:lang(zh) h1,
+:lang(ja) h1,
+:lang(zh) h2,
+:lang(ja) h2 {
+  line-height: 1.15;
+}
