@@ -45,3 +45,6 @@ next-env.d.ts
 
 # local editor / agent config
 /.claude/
+
+# raw supplier photo archives (16 GB) — processed copies live in public/products/
+/catalogue/

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Archive, Briefcase, Luggage, Package, Store, Wrench, type LucideIcon } from "lucide-react";
+import { Archive, Briefcase, Luggage, Package, type LucideIcon } from "lucide-react";
 import { isPlaceholderPhoto, type CategoryId } from "@/data/products";
 
 const categoryIcon: Record<CategoryId, LucideIcon> = {
@@ -7,8 +7,6 @@ const categoryIcon: Record<CategoryId, LucideIcon> = {
   "aluminium-sidecase": Archive,
   "plastic-topcase": Package,
   specialty: Luggage,
-  "racks-accessories": Wrench,
-  "dealer-display": Store,
 };
 
 /**

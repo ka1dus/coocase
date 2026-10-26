@@ -73,27 +73,30 @@ in `src/i18n/index.ts`.
 
 ## Products
 
-Everything about products lives in **`src/data/products.ts`**. The top of that file has a
-copy-and-paste template.
+Everything about products lives in **`src/data/products.ts`** (a copy-and-paste template is at the
+top of that file). Products mirror the supplier photo archives in `catalogue/`: one product per case
+style and lock type (keyless / key), with sizes as versions.
 
-- **Add a product:** copy the template into the `products` list. Only `slug`, `model`, `category`,
-  `kind`, `desc`, `material` and `features` are required.
-- **Product text:** `kind`, `desc`, `features` and variant `note` accept either an existing
-  translation key (e.g. `"keyless"`) or inline text such as `{ en: "…", zh: "…" }`. Languages you
-  leave out fall back to English, so you can add translations later.
-- **Extra details:** add rows to `specs`, e.g.
-  `{ label: { en: "Dimensions" }, value: "450 × 380 × 320 mm" }`.
-- **Photos:** put files in `public/products/<slug>/` and list them in `images` (the first one is
-  the main photo). Each size or version can also have its own `image`. Products, variants and
-  home-page categories (`categoryImages`) without photos show a branded "image coming soon"
-  placeholder, so photos can be added one at a time.
-- **Temporary stock photos:** until a product has its own `images`, it shows motorcycle photos from
-  the previous COOCASE site (`public/products/_placeholders/`, set per category in
-  `placeholderPhotos`). Set `placeholderPhotos` to `{}` to show the "image coming soon" panels
-  instead, and delete the folder once every product has real photos.
+- **Product text:** `name`, `kind`, `desc`, `features` and variant `note` accept an existing
+  translation key (e.g. `"keyless"`) or inline text such as `{ en: "…", zh: "…" }`. Missing
+  languages fall back to English.
+- **Extra details:** add rows to `specs`, e.g. `{ label: { en: "Dimensions" }, value: "450 × 380 mm" }`.
+- **Colour options:** plastic cases list their colour swatches in `colours`.
 
-The site photos (hero, lifestyle, factory, logo) are in `public/images/` and were extracted from
-the catalogue with `scripts/crop-catalogue.py`.
+### Photos
+
+`catalogue/` holds the supplier's original photo ZIPs (16 GB, not committed to git). Web copies are
+generated from them:
+
+```bash
+python3 scripts/catalogue-photos.py catalogue public/products
+```
+
+The script reads the ZIPs directly, takes the photos chosen in its `PICKS` table and writes WebP
+files of max 1600 px to `public/products/<slug>/` (about 40 KB each). To swap a photo, change its
+file name in `PICKS`, re-run the script, and commit `public/products/`.
+
+Anything without a photo shows a branded "image coming soon" placeholder.
 
 ## Contact form
 

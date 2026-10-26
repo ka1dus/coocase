@@ -170,7 +170,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               {t.home.fullCatalog} <ArrowRight size={14} />
             </Link>
           </div>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {categoryOrder.map((c) => (
               <Link
                 key={c}

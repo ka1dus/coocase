@@ -3,8 +3,7 @@ import type { Dictionary } from "./en";
 const it: Dictionary = {
   meta: {
     title: "COOCASE | Libertà senza chiave",
-    description:
-      "Bauletti, valigie laterali, portapacchi e accessori COOCASE in alluminio con serratura senza chiave. Progettati dal 2006 e distribuiti in Europa, nelle Americhe, in Medio Oriente e in Asia.",
+    description: "Bauletti, valigie laterali e valigie con ruote COOCASE per moto, in alluminio e plastica, con chiusura senza chiave. Progettati e prodotti dal 2006, distribuiti in Europa, nelle Americhe, in Medio Oriente, in Asia e in Oceania.",
   },
   nav: {
     home: "Home",
@@ -36,7 +35,7 @@ const it: Dictionary = {
     imageComingSoon: "Immagine in arrivo",
   },
   home: {
-    badge: "Dal 2006 · Singapore",
+    badge: "Dal 2006",
     heroTitle1: "Libertà",
     heroTitle2: "senza",
     heroTitle3: "chiave",
@@ -51,7 +50,7 @@ const it: Dictionary = {
       "Schienale regolabile TASS",
       "Guarnizione in silicone",
       "Carico max 10 kg",
-      "Da 15 L a 160 L",
+      "Bauletti da 27 a 68 L",
       "Minuteria tedesca",
       "Presenti in 38 paesi",
     ],
@@ -64,8 +63,8 @@ const it: Dictionary = {
       { title: "Impermeabilità in silicone", text: "Una guarnizione in silicone all'interno del coperchio, protetta dai raggi UV, tiene fuori acqua e polvere." },
     ],
     featuredEyebrow: "Libertà senza chiave",
-    featuredTitle: "La serie COO senza chiave",
-    featuredText: "Tre design, sei misure di bauletto da 30 a 65 litri e valigie laterali senza chiave abbinate.",
+    featuredTitle: "La gamma senza chiave",
+    featuredText: "Bauletti, valigie laterali e valigie con ruote con il sistema di chiusura senza chiave COOCASE.",
     anatomyEyebrow: "Funzionalità eccezionale",
     anatomyTitle: "Ogni dettaglio, progettato",
     anatomyText:
@@ -74,7 +73,7 @@ const it: Dictionary = {
     categoriesTitle: "Per ogni punto di montaggio",
     fullCatalog: "Catalogo completo",
     networkEyebrow: "Rete di distribuzione globale",
-    networkTitle: "Su strada in cinque continenti",
+    networkTitle: "Ovunque tu vada",
     networkText:
       "I prodotti COOCASE raggiungono i motociclisti tramite distributori autorizzati in Europa, nelle Americhe, in Medio Oriente, in Asia e in Oceania.",
     networkCta: "Trova un distributore",
@@ -140,12 +139,10 @@ const it: Dictionary = {
     { title: "Interno", text: "Organizer multitasca, rivestimento in PU ad alta densità ad asciugatura rapida, cinghia a X integrata e cinghia di sostegno del coperchio." },
   ],
   categories: {
-    "aluminium-topcase": { name: "Bauletti in alluminio", short: "Bauletti", text: "Bauletti in alluminio con o senza chiave, da 30 a 65 litri." },
-    "aluminium-sidecase": { name: "Valigie laterali in alluminio", short: "Laterali", text: "Valigie laterali senza chiave e classiche da 15 a 46 litri, anche a S." },
+    "aluminium-topcase": { name: "Bauletti in alluminio", short: "Bauletti", text: "Bauletti in alluminio con o senza chiave da 27 a 65 litri, compresi i modelli con schienale TASS e ad apertura laterale." },
+    "aluminium-sidecase": { name: "Valigie laterali in alluminio", short: "Laterali", text: "Valigie laterali in alluminio con o senza chiave da 24 a 46 litri, più la valigia a doppio uso da 38 litri." },
     "plastic-topcase": { name: "Bauletti in plastica", short: "Bauletti in plastica", text: "Bauletti leggeri e multifunzione con luce stop LED, da 28 a 50 litri." },
-    specialty: { name: "Valigeria speciale", short: "Speciali", text: "Valigie con ruote e valigie in alluminio su misura fino a 160 litri." },
-    "racks-accessories": { name: "Portapacchi e accessori", short: "Portapacchi e accessori", text: "Portapacchi universali e specifici, piastre, borse e schienali." },
-    "dealer-display": { name: "Espositori per rivenditori", short: "Espositori", text: "Espositori da showroom da 3 a 13 valigie." },
+    specialty: { name: "Valigeria speciale", short: "Speciali", text: "Valigie con ruote rimovibili da 48 a 68 litri e trolley in alluminio." },
   },
   kinds: {
     keylessTopcase: "Bauletto in alluminio senza chiave",
@@ -154,14 +151,9 @@ const it: Dictionary = {
     sidecase: "Valigia laterale in alluminio",
     dualUse: "Valigia in alluminio a doppio uso",
     backrestTopcase: "Bauletto in alluminio con schienale regolabile",
-    reflectiveTopcase: "Bauletto in alluminio riflettente",
-    miniCase: "Mini valigia in alluminio",
     plasticKeyless: "Bauletto multifunzione in plastica",
-    wheelCase: "Valigia senza chiave con ruote rimovibili",
-    customCase: "Valigia in alluminio su misura",
-    rack: "Sistema portapacchi",
-    accessory: "Accessorio",
-    display: "Espositore per rivenditori",
+    wheelCase: "Bauletto in alluminio con ruote rimovibili",
+    customCase: "Trolley in alluminio",
   },
   descs: {
     keylessTop:
@@ -174,40 +166,15 @@ const it: Dictionary = {
       "Valigie laterali in lega di alluminio con angolari multifunzione e maniglie triangolari in alluminio di alta qualità, robuste e facili da maneggiare.",
     dualUse:
       "Valigia a doppio uso, utilizzabile come bauletto o come laterale, con angolari multifunzione e maniglie triangolari in alluminio di alta qualità.",
-    stampingC:
-      "Il sistema senza chiave della serie COO con pannello laterale a 'C' in rilievo: un design deciso con la robustezza di ogni COOCASE. Contiene due caschi jet.",
-    stampingX:
-      "Il pannello frontale con 'X' in rilievo dà a questo bauletto con serratura a chiave un look tecnico e deciso. Grande capacità per due caschi jet e lo stesso interno ammortizzante della serie COO.",
     tass:
       "TASS — Tour Active Spine Support. Il primo bauletto al mondo con schienale regolabile integrato, pensato per il comfort del passeggero. Disponibile con apertura standard o laterale.",
-    reflective:
-      "Bauletti in alluminio con grafiche riflettenti che si illuminano con i fari di notte. Design con mappe del mondo, Giappone, mimetico e floreale.",
-    mini:
-      "Valigie compatte in alluminio per scooter, moto leggere e flotte, con angolari e maniglie triangolari in alluminio. Disponibili versioni a sgancio rapido e misure personalizzabili.",
-    plastic:
-      "Bauletto multifunzione in plastica con luce stop LED, guarnizione impermeabile e guscio antiurto. Versione a combinazione senza chiave o versione a pulsante con telecomando.",
+    plastic: "Bauletto multifunzione in plastica con luce stop LED, guarnizione impermeabile e guscio antiurto. Disponibile con serratura a combinazione senza chiave o con chiave; alcuni modelli anche in versione con telecomando.",
     wheel:
       "Ruote rimovibili e maniglia trolley trasformano un bauletto COOCASE senza chiave in un trolley, così i bagagli pesanti scorrono facilmente dopo un lungo viaggio.",
-    custom2:
-      "Valigie in alluminio su misura: un bagaglio a mano, una valigia da 90 L che contiene due valigie da 45 L e la Special Series da 160 L con schiuma ammortizzante per fino a quattro caschi.",
-    universalRacks:
-      "Soluzioni di montaggio universali: piastre adattatrici Tipo A, staffe per telai laterali Tipo B, kit Tipo C per montare le valigie COOCASE senza chiave su telai laterali (anche di marchi italiani) e Tipo D.",
-    sideRack:
-      "Telai laterali multifunzione U-03 in acciaio inox (argento) o acciaio (nero), con montaggio e smontaggio rapidi sulla maggior parte delle moto.",
-    modelRacks:
-      "Portapacchi posteriori, telai laterali e paramotore specifici per i principali marchi. Sviluppiamo continuamente nuovi attacchi, perché ogni motociclista abbia un montaggio sicuro e preciso per la sua COOCASE.",
-    basePlates:
-      "Piastre e serrature per ogni linea di bauletti COOCASE: Q-J2, Q-J2-Stamping-C, Q-J2-Stamping-X, Q-J2-Economic e X-Series. Piastre di nuova generazione per la famiglia Q-J2.",
-    bags:
-      "Le borse interne rimovibili si adattano perfettamente alla valigia, proteggono gli oggetti e riducono rumori e vibrazioni. Le borse divisorie sfruttano ogni litro.",
-    backrests:
-      "Schienali premium ed economici per il comfort del passeggero, oltre alla base per schienale regolabile (AB). Il logo COOCASE degli schienali premium è fissato saldamente e non si stacca.",
-    plasticAcc:
-      "Accessori opzionali per bauletti in plastica: cuscini schienale in tre misure, rivestimenti interni in sei misure e luci stop LED.",
-    display:
-      "Espositori da showroom per rivenditori: il Jumbo per 7–13 valigie e stand da 3, 4 e 6 valigie con montaggio rapido.",
   },
   variantNotes: {
+    keyLock: "Con chiave",
+    remote: "Telecomando",
     sShape: "A S",
     quickRelease: "Sgancio rapido",
     sideOpen: "Apertura laterale",
@@ -219,22 +186,17 @@ const it: Dictionary = {
   catalog: {
     eyebrow: "Gamma completa",
     title: "Catalogo",
-    text: "Valigie senza chiave, portapacchi e accessori da viaggio dal catalogo 2026–2027. Filtra per categoria o cerca per modello, capacità o caratteristica.",
+    text: "Bauletti, valigie laterali e valigie con ruote in alluminio e plastica della gamma COOCASE. Filtra per categoria o cerca per modello, capacità o caratteristica.",
     all: "Tutti",
     results: "{count} prodotti",
-    colourwaysTitle: "Colorazioni",
-    colourwaysText: "La gamma di bauletti senza chiave nei colori standard. Design personalizzati su richiesta.",
   },
   product: {
     overview: "Panoramica",
     features: "Caratteristiche",
     sizesTitle: "Misure e versioni",
+    coloursTitle: "Colori disponibili",
     detailsTitle: "Dettagli",
     gallery: "Su strada",
-    colourChart: "Cartella colori",
-    fitmentTitle: "Elenco compatibilità portapacchi",
-    fitmentText: "Chiedici la compatibilità aggiornata per il tuo modello di moto.",
-    brandsTitle: "Marchi compatibili",
     inquire: "Richiedi informazioni",
     related: "Potrebbe interessarti",
     relatedEyebrow: "Altro in {category}",
@@ -244,17 +206,17 @@ const it: Dictionary = {
     materialFabric: "Tessuto tecnico",
     lockKeyless: "Combinazione senza chiave",
     lockKey: "Serratura a chiave",
-    lockBoth: "Senza chiave o a pulsante",
+    lockBoth: "Senza chiave o con chiave",
     perCase: "per valigia",
   },
   about: {
     eyebrow: "La nostra storia",
-    title1: "Nati a Singapore,",
-    title2: "in viaggio ovunque",
-    p1: "COOCASE è nata a Singapore nel 2006. Da quasi vent'anni progettiamo e produciamo valigeria premium per moto che unisce innovazione, sicurezza e durata, e oggi le nostre valigie sono scelte dai motociclisti tramite distributori in Europa, nelle Americhe, in Medio Oriente e in Asia.",
-    p2: "Ogni valigia COOCASE è sottoposta a test rigorosi. Realizzate in alluminio aeronautico e progettate per l'uso reale, le nostre valigie sono fatte per durare ogni viaggio e offrire l'affidabilità di cui i motociclisti hanno bisogno.",
+    title1: "Progettate per la strada,",
+    title2: "in viaggio in tutto il mondo",
+    p1: "Dal 2006 COOCASE progetta e produce valigeria premium per moto che unisce innovazione, sicurezza e durata. Oggi le nostre valigie sono scelte dai motociclisti tramite distributori autorizzati in Europa, nelle Americhe, in Medio Oriente, in Asia e in Oceania.",
+    p2: "Ogni valigia è prodotta a Jiangmen, in Cina, e viene sottoposta a test rigorosi prima della spedizione. Realizzate in alluminio aeronautico con minuteria tedesca e progettate per l'uso reale, sono fatte per durare ogni viaggio e offrire l'affidabilità di cui i motociclisti hanno bisogno.",
     p3: "Le moto adottano la tecnologia senza chiave, e crediamo che le valigie debbano fare lo stesso. Il sistema COOCASE elimina la chiave separata per bauletto e laterali: accesso rapido e sicuro con un tocco. Premium. Elegante. Sicuro.",
-    statFounded: "Fondata a Singapore",
+    statFounded: "Anno di fondazione",
     statCountries: "Paesi serviti",
     statFactory: "Produzione a Jiangmen, Cina",
     philosophyTitle: "Always Special",
@@ -281,13 +243,15 @@ const it: Dictionary = {
     listTitle: "Sedi",
     count: "{count} sedi",
     becomeTitle: "Diventa distributore COOCASE",
-    becomeText: "Vuoi rappresentare COOCASE nel tuo mercato? Parla con il nostro team di distribuzione ed espositori per rivenditori.",
+    becomeText: "Vuoi rappresentare COOCASE nel tuo mercato? Parla con il nostro team per diventare distributore autorizzato.",
     becomeCta: "Richiesta distributore",
     email: "Email",
     phone: "Telefono",
     website: "Sito web",
     directions: "Apri nelle mappe",
     resetView: "Reimposta vista",
+    searchPlaceholder: "Cerca paese o azienda…",
+    askLocal: "Chiedici dei rivenditori locali",
   },
   contact: {
     eyebrow: "Scrivici",
@@ -309,17 +273,17 @@ const it: Dictionary = {
     required: "Obbligatorio",
   },
   offices: {
-    singapore: { label: "Sede di Singapore", name: "VASIX" },
-    europe: { label: "Europa", name: "COOCASE Europe" },
+    singapore: { label: "Ufficio di Singapore", name: "VASIX" },
+    europe: { label: "Europa · Grecia", name: "A. Kioupis & Co. O.E." },
     china: { label: "Cina", name: "COOCASE Manufacturing" },
   },
   footer: {
-    tagline: "Valigeria per moto senza chiave, progettata a Singapore dal 2006.",
+    tagline: "Valigeria per moto senza chiave dal 2006.",
     catalog: "Catalogo",
     company: "Azienda",
-    hq: "Sede di Singapore",
+    hq: "Ufficio di Singapore",
     rights: "Tutti i diritti riservati.",
-    founded: "Fondata nel 2006 · Singapore",
+    founded: "Dal 2006",
   },
 };
 

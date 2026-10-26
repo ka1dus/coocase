@@ -19,7 +19,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="relative aspect-[4/3] overflow-hidden bg-white">
         <ProductImage
           src={productPhotos(product)[0]}
-          alt={`${product.model} — ${pt.kind(product)}`}
+          alt={`${pt.name(product)} — ${pt.kind(product)}`}
           category={product.category}
           comingSoon={t.common.imageComingSoon}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
@@ -34,7 +34,7 @@ export default function ProductCard({ product }: { product: Product }) {
       </div>
       <div className="flex flex-1 flex-col border-t border-brand-line p-5">
         <span className="eyebrow">{t.categories[product.category].short}</span>
-        <h3 className="mt-2 font-display text-xl font-bold uppercase leading-tight">{product.model}</h3>
+        <h3 className="mt-2 font-display text-xl font-bold uppercase leading-tight">{pt.name(product)}</h3>
         <p className="mt-1 text-sm text-brand-steel">{pt.kind(product)}</p>
         <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] uppercase tracking-wider text-brand-carbon/70">
           {product.volume && <span>{product.volume}</span>}

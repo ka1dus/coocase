@@ -3,8 +3,7 @@ import type { Dictionary } from "./en";
 const fr: Dictionary = {
   meta: {
     title: "COOCASE | La liberté sans clé",
-    description:
-      "Top cases, valises latérales, supports et accessoires moto COOCASE en aluminium à serrure sans clé. Conçus depuis 2006 et distribués en Europe, aux Amériques, au Moyen-Orient et en Asie.",
+    description: "Top cases, valises latérales et valises à roues COOCASE pour moto, en aluminium et en plastique, à verrouillage sans clé. Conçus et fabriqués depuis 2006, distribués en Europe, aux Amériques, au Moyen-Orient, en Asie et en Océanie.",
   },
   nav: {
     home: "Accueil",
@@ -36,7 +35,7 @@ const fr: Dictionary = {
     imageComingSoon: "Image bientôt disponible",
   },
   home: {
-    badge: "Depuis 2006 · Singapour",
+    badge: "Depuis 2006",
     heroTitle1: "La liberté",
     heroTitle2: "sans",
     heroTitle3: "clé",
@@ -51,7 +50,7 @@ const fr: Dictionary = {
       "Dosseret réglable TASS",
       "Joint silicone étanche",
       "Charge max 10 kg",
-      "De 15 L à 160 L",
+      "Top cases de 27 à 68 L",
       "Visserie allemande",
       "Présents dans 38 pays",
     ],
@@ -64,8 +63,8 @@ const fr: Dictionary = {
       { title: "Étanchéité silicone", text: "Un joint silicone placé à l'intérieur du couvercle, à l'abri des UV, bloque l'eau et la poussière." },
     ],
     featuredEyebrow: "La liberté sans clé",
-    featuredTitle: "La série COO sans clé",
-    featuredText: "Trois designs, six tailles de top case de 30 à 65 litres et des valises latérales sans clé assorties.",
+    featuredTitle: "La gamme sans clé",
+    featuredText: "Top cases, valises latérales et valises à roues équipés du verrouillage sans clé COOCASE.",
     anatomyEyebrow: "Une fonctionnalité exceptionnelle",
     anatomyTitle: "Chaque détail, pensé",
     anatomyText:
@@ -74,7 +73,7 @@ const fr: Dictionary = {
     categoriesTitle: "Pour chaque point de fixation",
     fullCatalog: "Catalogue complet",
     networkEyebrow: "Réseau de distribution mondial",
-    networkTitle: "Sur les routes de cinq continents",
+    networkTitle: "Où que vous rouliez",
     networkText:
       "Les produits COOCASE sont distribués par des revendeurs agréés en Europe, aux Amériques, au Moyen-Orient, en Asie et en Océanie.",
     networkCta: "Trouver un distributeur",
@@ -140,12 +139,10 @@ const fr: Dictionary = {
     { title: "Intérieur", text: "Organiseur multipoches, doublure PU haute densité à séchage rapide, sangle en X intégrée et sangle de maintien du couvercle." },
   ],
   categories: {
-    "aluminium-topcase": { name: "Top cases aluminium", short: "Top cases", text: "Top cases aluminium avec ou sans clé, de 30 à 65 litres." },
-    "aluminium-sidecase": { name: "Valises latérales aluminium", short: "Valises latérales", text: "Valises latérales sans clé et classiques de 15 à 46 litres, y compris en S." },
+    "aluminium-topcase": { name: "Top cases aluminium", short: "Top cases", text: "Top cases aluminium avec ou sans clé de 27 à 65 litres, dont les modèles à dosseret TASS et à ouverture latérale." },
+    "aluminium-sidecase": { name: "Valises latérales aluminium", short: "Valises latérales", text: "Valises latérales aluminium avec ou sans clé de 24 à 46 litres, plus la valise double usage de 38 litres." },
     "plastic-topcase": { name: "Top cases plastique", short: "Top cases plastique", text: "Top cases légers et multifonctions avec feu stop LED, de 28 à 50 litres." },
-    specialty: { name: "Bagagerie spéciale", short: "Spéciaux", text: "Valises à roulettes et valises aluminium sur mesure jusqu'à 160 litres." },
-    "racks-accessories": { name: "Supports et accessoires", short: "Supports et accessoires", text: "Supports universels et spécifiques, platines, sacs et dosserets." },
-    "dealer-display": { name: "Présentoirs revendeurs", short: "Présentoirs", text: "Présentoirs de showroom pour 3 à 13 valises." },
+    specialty: { name: "Bagagerie spéciale", short: "Spéciaux", text: "Valises à roues amovibles de 48 à 68 litres et valises trolley en aluminium." },
   },
   kinds: {
     keylessTopcase: "Top case aluminium sans clé",
@@ -154,14 +151,9 @@ const fr: Dictionary = {
     sidecase: "Valise latérale aluminium",
     dualUse: "Valise aluminium double usage",
     backrestTopcase: "Top case aluminium à dosseret réglable",
-    reflectiveTopcase: "Top case aluminium réfléchissant",
-    miniCase: "Mini valise aluminium",
     plasticKeyless: "Top case plastique multifonction",
-    wheelCase: "Valise sans clé à roues amovibles",
-    customCase: "Valise aluminium sur mesure",
-    rack: "Système de support",
-    accessory: "Accessoire",
-    display: "Présentoir revendeur",
+    wheelCase: "Top case aluminium à roues amovibles",
+    customCase: "Valise trolley en aluminium",
   },
   descs: {
     keylessTop:
@@ -174,40 +166,15 @@ const fr: Dictionary = {
       "Valises latérales en alliage d'aluminium équipées de coins de protection multifonctions et de poignées triangulaires en aluminium de qualité, robustes et faciles à manipuler.",
     dualUse:
       "Une valise double usage, en top case ou en valise latérale, équipée de coins de protection multifonctions et de poignées triangulaires en aluminium de qualité.",
-    stampingC:
-      "Le verrouillage sans clé de la série COO avec un panneau latéral embossé « C » : un design marquant et la robustesse de chaque COOCASE. Accueille deux casques jet.",
-    stampingX:
-      "Un panneau avant embossé « X » donne à ce top case à clé un style technique affirmé. Grand volume pour deux casques jet, avec la même doublure amortissante que la série COO.",
     tass:
       "TASS — Tour Active Spine Support. Le premier top case au monde avec dosseret réglable intégré, conçu pour le confort du passager. Disponible avec ouverture standard ou latérale.",
-    reflective:
-      "Top cases aluminium habillés de graphismes réfléchissants qui s'illuminent dans les phares la nuit. Designs carte du monde, Japon, camouflage et floral.",
-    mini:
-      "Valises aluminium compactes pour scooters, motos légères et flottes, avec coins de protection et poignées triangulaires en aluminium. Versions à démontage rapide et tailles personnalisables.",
-    plastic:
-      "Top case plastique multifonction avec feu stop LED, joint étanche et coque antichoc. Version à combinaison sans clé ou version à bouton avec télécommande.",
+    plastic: "Top case plastique multifonction avec feu stop LED, joint étanche et coque antichoc. Disponible avec serrure à combinaison sans clé ou serrure à clé ; certains modèles existent aussi en version télécommandée.",
     wheel:
       "Des roues amovibles et une poignée trolley transforment un top case COOCASE sans clé en valise : les bagages lourds roulent facilement après un long trajet.",
-    custom2:
-      "Valises aluminium sur mesure : un bagage cabine, une valise de 90 L qui accueille deux valises de 45 L, et la Special Series de 160 L avec mousse amortissante pour jusqu'à quatre casques.",
-    universalRacks:
-      "Solutions de fixation universelles : platines adaptatrices Type A, pattes de support latéral Type B, kits Type C pour monter les valises COOCASE sans clé sur des supports latéraux (y compris de marques italiennes) et Type D.",
-    sideRack:
-      "Supports latéraux multifonctions U-03 en inox (argent) ou acier (noir), à montage et démontage rapides sur la plupart des motos.",
-    modelRacks:
-      "Supports arrière, supports latéraux et pare-carters spécifiques pour les grandes marques. Nous développons sans cesse de nouveaux supports pour que chaque motard bénéficie d'une fixation sûre et parfaite pour sa COOCASE.",
-    basePlates:
-      "Platines et serrures pour chaque gamme de top cases COOCASE : Q-J2, Q-J2-Stamping-C, Q-J2-Stamping-X, Q-J2-Economic et X-Series. Platines nouvelle génération pour la famille Q-J2.",
-    bags:
-      "Les sacs intérieurs amovibles s'adaptent parfaitement à la valise, protègent vos affaires et réduisent bruits et vibrations. Les sacs séparateurs exploitent chaque litre.",
-    backrests:
-      "Dosserets premium et économiques pour le confort du passager, ainsi que la base de dosseret réglable (AB). Le logo COOCASE des dosserets premium est solidement fixé et ne se décolle pas.",
-    plasticAcc:
-      "Accessoires en option pour top cases plastique : coussins de dosseret en trois tailles, doublures intérieures en six tailles et feux stop LED.",
-    display:
-      "Présentoirs de showroom pour revendeurs : le Jumbo pour 7 à 13 valises, ainsi que des présentoirs 3, 4 et 6 valises à montage rapide.",
   },
   variantNotes: {
+    keyLock: "À clé",
+    remote: "Télécommande",
     sShape: "En S",
     quickRelease: "Démontage rapide",
     sideOpen: "Ouverture latérale",
@@ -219,22 +186,17 @@ const fr: Dictionary = {
   catalog: {
     eyebrow: "Gamme complète",
     title: "Catalogue",
-    text: "Valises sans clé, supports et accessoires de voyage du catalogue 2026–2027. Filtrez par catégorie ou recherchez par modèle, volume ou fonction.",
+    text: "Top cases, valises latérales et valises à roues en aluminium et en plastique de la gamme COOCASE. Filtrez par catégorie ou recherchez par modèle, volume ou fonction.",
     all: "Tous",
     results: "{count} produits",
-    colourwaysTitle: "Coloris",
-    colourwaysText: "La gamme de top cases sans clé en coloris standard. Designs personnalisés sur demande.",
   },
   product: {
     overview: "Aperçu",
     features: "Caractéristiques",
     sizesTitle: "Tailles et versions",
+    coloursTitle: "Coloris disponibles",
     detailsTitle: "Détails",
     gallery: "Sur la route",
-    colourChart: "Nuancier",
-    fitmentTitle: "Liste de compatibilité des supports",
-    fitmentText: "Demandez-nous la compatibilité à jour pour votre modèle de moto.",
-    brandsTitle: "Marques couvertes",
     inquire: "Demander des informations",
     related: "Vous aimerez aussi",
     relatedEyebrow: "Plus de {category}",
@@ -244,17 +206,17 @@ const fr: Dictionary = {
     materialFabric: "Textile technique",
     lockKeyless: "Combinaison sans clé",
     lockKey: "Serrure à clé",
-    lockBoth: "Sans clé ou à bouton",
+    lockBoth: "Sans clé ou à clé",
     perCase: "par valise",
   },
   about: {
     eyebrow: "Notre histoire",
-    title1: "Né à Singapour,",
-    title2: "roulé partout",
-    p1: "COOCASE a été fondée à Singapour en 2006. Depuis près de vingt ans, nous concevons et fabriquons une bagagerie moto haut de gamme alliant innovation, sécurité et durabilité, aujourd'hui adoptée par les motards grâce à des distributeurs en Europe, aux Amériques, au Moyen-Orient et en Asie.",
-    p2: "Chaque valise COOCASE est soumise à des tests rigoureux. Fabriquées en aluminium aéronautique et conçues pour la route réelle, nos valises sont faites pour durer et offrir la fiabilité dont les motards ont besoin.",
+    title1: "Conçues pour la route,",
+    title2: "roulées dans le monde entier",
+    p1: "Depuis 2006, COOCASE conçoit et fabrique une bagagerie moto haut de gamme alliant innovation, sécurité et durabilité. Aujourd'hui, nos valises sont adoptées par les motards grâce à des distributeurs agréés en Europe, aux Amériques, au Moyen-Orient, en Asie et en Océanie.",
+    p2: "Chaque valise est fabriquée à Jiangmen, en Chine, et soumise à des tests rigoureux avant expédition. En aluminium aéronautique avec quincaillerie allemande et conçues pour la route réelle, nos valises sont faites pour durer et offrir la fiabilité dont les motards ont besoin.",
     p3: "Les motos adoptent la technologie sans clé ; nous pensons que vos valises doivent suivre. Le système de verrouillage sans clé COOCASE supprime la clé séparée de votre top case ou de vos valises latérales : un accès rapide et sûr d'une simple pression. Premium. Élégant. Sûr.",
-    statFounded: "Fondée à Singapour",
+    statFounded: "Année de création",
     statCountries: "Pays desservis",
     statFactory: "Fabrication à Jiangmen, Chine",
     philosophyTitle: "Always Special",
@@ -281,13 +243,15 @@ const fr: Dictionary = {
     listTitle: "Points de vente",
     count: "{count} sites",
     becomeTitle: "Devenir distributeur COOCASE",
-    becomeText: "Vous souhaitez représenter COOCASE sur votre marché ? Échangez avec notre équipe sur la distribution et les présentoirs revendeurs.",
+    becomeText: "Vous souhaitez représenter COOCASE sur votre marché ? Échangez avec notre équipe pour devenir distributeur agréé.",
     becomeCta: "Demande de distribution",
     email: "E-mail",
     phone: "Téléphone",
     website: "Site web",
     directions: "Ouvrir dans les cartes",
     resetView: "Réinitialiser la vue",
+    searchPlaceholder: "Rechercher un pays ou une entreprise…",
+    askLocal: "Nous demander les revendeurs locaux",
   },
   contact: {
     eyebrow: "Écrivez-nous",
@@ -309,17 +273,17 @@ const fr: Dictionary = {
     required: "Obligatoire",
   },
   offices: {
-    singapore: { label: "Siège à Singapour", name: "VASIX" },
-    europe: { label: "Europe", name: "COOCASE Europe" },
+    singapore: { label: "Bureau de Singapour", name: "VASIX" },
+    europe: { label: "Europe · Grèce", name: "A. Kioupis & Co. O.E." },
     china: { label: "Chine", name: "COOCASE Manufacturing" },
   },
   footer: {
-    tagline: "Bagagerie moto sans clé, conçue à Singapour depuis 2006.",
+    tagline: "Bagagerie moto sans clé depuis 2006.",
     catalog: "Catalogue",
     company: "Entreprise",
-    hq: "Siège à Singapour",
+    hq: "Bureau de Singapour",
     rights: "Tous droits réservés.",
-    founded: "Fondée en 2006 · Singapour",
+    founded: "Depuis 2006",
   },
 };
 

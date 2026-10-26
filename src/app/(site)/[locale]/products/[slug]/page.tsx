@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   if (!product) return {};
   const pt = productText(t, locale);
   return {
-    title: `${product.model} — ${pt.kind(product)}`,
+    title: `${pt.name(product)} — ${pt.kind(product)}`,
     description: pt.desc(product),
     ...(product.images?.[0] && { openGraph: { images: [product.images[0]] } }),
   };

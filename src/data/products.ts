@@ -3,34 +3,35 @@
  *  COOCASE PRODUCT CATALOGUE — the single place to add or change products.
  * ════════════════════════════════════════════════════════════════════════════
  *
+ *  Products follow the supplier photo archives in catalogue/ (one product per
+ *  case style and lock type, with sizes as versions). Photos are generated from
+ *  those archives by scripts/catalogue-photos.py into public/products/<slug>/.
+ *
  *  ADD A PRODUCT: copy the template below into the `products` list and fill it in.
  *
  *    {
  *      slug: "my-new-case",                 // URL: /en/products/my-new-case (unique, lowercase, dashes)
- *      model: "Q-J2-C008",                  // product title (model names are not translated)
+ *      name: { en: "My New Case", zh: "新款箱" },   // or a plain string for model names like "Fusion V28"
  *      category: "aluminium-topcase",       // see `categoryOrder` below
- *      kind: { en: "Aluminium-alloy keyless topcase", zh: "铝合金无钥匙尾箱" },
+ *      kind: "keylessTopcase",              // a key from the dictionaries, or { en: "…" }
  *      desc: { en: "Short description shown on the product page." },
  *      volume: "30 – 65 L",                 // optional, shown on cards
  *      maxLoadKg: 10,                       // optional
  *      material: "aluminium",               // aluminium | plastic | steel | fabric
  *      lock: "keyless",                     // optional: keyless | key | both
  *      features: ["keyless", "waterproof", { en: "Any new feature text" }],
- *      variants: [{ label: "45KL" }, { label: "55KL", image: "/products/my-new-case/55.jpg" }],
+ *      variants: [{ label: "45L", image: photo("my-new-case", "45l") }],
  *      specs: [{ label: { en: "Dimensions" }, value: "450 × 380 × 320 mm" }],
- *      images: ["/products/my-new-case/main.jpg", "/products/my-new-case/side.jpg"],
+ *      images: photos("my-new-case", "main", "g01", "g02"),
  *    },
  *
- *  TEXT: `kind`, `desc`, `features` and variant `note` accept either
- *    • a key that already has translations in src/i18n/dictionaries/*.ts (e.g. "keyless"), or
- *    • inline text: { en: "…" } — add zh / it / fr / id / ja whenever you have them.
- *      Missing languages fall back to English automatically.
+ *  TEXT: `name`, `kind`, `desc`, `features` and variant `note` accept either a key that
+ *  already has translations in src/i18n/dictionaries/*.ts, or inline text
+ *  { en: "…", zh: "…", … }. Missing languages fall back to English.
  *
- *  IMAGES: put files in public/products/<slug>/ and list them in `images`
- *  (the first one is the main photo). Products, variants and categories without
- *  images show a branded "image coming soon" placeholder, so everything is optional.
- *
- *  EXTRA DETAILS: add rows to `specs` (dimensions, weight, colours, fitment…).
+ *  IMAGES: files live in public/products/<slug>/ and are listed in `images`
+ *  (the first one is the main photo). Anything without a photo shows a branded
+ *  "image coming soon" placeholder.
  */
 import type { Dictionary } from "@/i18n/dictionaries/en";
 import type { Locale } from "@/i18n/config";
@@ -46,10 +47,17 @@ export type BadgeKey = keyof Dictionary["badges"];
 export type LocalizedText = { en: string } & Partial<Record<Exclude<Locale, "en">, string>>;
 
 export interface Variant {
-  /** Size / version code, e.g. "45KL". Not translated. */
+  /** Size / version code, e.g. "45L". Not translated. */
   label: string;
   image?: string;
   note?: VariantNote | LocalizedText;
+}
+
+export interface Colour {
+  /** Supplier colour code, e.g. "PU1355". */
+  code: string;
+  label: LocalizedText;
+  image: string;
 }
 
 export interface Spec {
@@ -59,7 +67,8 @@ export interface Spec {
 
 export interface Product {
   slug: string;
-  model: string;
+  /** Product title. Plain strings (model names) are shown as-is in every language. */
+  name: string | LocalizedText;
   category: CategoryId;
   kind: KindKey | LocalizedText;
   desc: DescKey | LocalizedText;
@@ -72,380 +81,332 @@ export interface Product {
   lock?: "keyless" | "key" | "both";
   features: (FeatureKey | LocalizedText)[];
   variants?: Variant[];
+  /** Colour options (plastic cases). */
+  colours?: Colour[];
   /** Extra detail rows for the product page. */
   specs?: Spec[];
   badge?: BadgeKey;
-  /** Shows the list of motorcycle brands covered by COOCASE racks. */
-  fitmentList?: boolean;
-  /** Shown in the "keyless COO-Series" section on the home page. */
+  /** Shown in the keyless section on the home page. */
   featured?: boolean;
 }
 
-export const categoryOrder: CategoryId[] = [
-  "aluminium-topcase",
-  "aluminium-sidecase",
-  "plastic-topcase",
-  "specialty",
-  "racks-accessories",
-  "dealer-display",
-];
+export const categoryOrder: CategoryId[] = ["aluminium-topcase", "aluminium-sidecase", "plastic-topcase", "specialty"];
 
-/** Optional cover photo per category on the home page. Falls back to `placeholderPhotos`. */
-export const categoryImages: Partial<Record<CategoryId, string>> = {};
-
-/**
- * TEMPORARY stock photos (from the previous COOCASE site), shown for any product
- * that has no `images` yet. As soon as a product gets its own `images`, these stop
- * showing for it. Set this to {} to show "image coming soon" panels instead.
- */
-const STOCK = "/products/_placeholders";
-export const placeholderPhotos: Partial<Record<CategoryId, string[]>> = {
-  "aluminium-topcase": [`${STOCK}/cruiser-road.jpg`, `${STOCK}/sport-red.jpg`, `${STOCK}/electric-wall.jpg`],
-  "aluminium-sidecase": [`${STOCK}/sport-blue.jpg`, `${STOCK}/sport-yellow.jpg`],
-  "plastic-topcase": [`${STOCK}/sport-white.jpg`, `${STOCK}/sport-blue.jpg`],
-  specialty: [`${STOCK}/electric-wall.jpg`, `${STOCK}/cruiser-road.jpg`],
-  "racks-accessories": [`${STOCK}/sport-yellow.jpg`, `${STOCK}/sport-white.jpg`],
-  "dealer-display": [`${STOCK}/sport-yellow.jpg`, `${STOCK}/cruiser-road.jpg`],
+/** Optional cover photo per category on the home page. Falls back to the category's first product photo. */
+export const categoryImages: Partial<Record<CategoryId, string>> = {
+  "aluminium-topcase": "/products/keyless-aluminium-top-case/g01.webp",
+  "aluminium-sidecase": "/products/key-aluminium-side-cases/g02.webp",
+  "plastic-topcase": "/products/plastic-astra-s48/keyless.webp",
+  specialty: "/products/keyless-wheel-top-case/g01.webp",
 };
 
-export const isPlaceholderPhoto = (src: string) => src.startsWith(`${STOCK}/`);
+/**
+ * Optional stock photos per category for products that have no `images` yet.
+ * Empty now that every product has real photos; products without photos show
+ * the "image coming soon" placeholder instead.
+ */
+export const placeholderPhotos: Partial<Record<CategoryId, string[]>> = {};
 
-const sizes = (...labels: string[]): Variant[] => labels.map((label) => ({ label }));
+// ── Helpers ──────────────────────────────────────────────────────────────────
+export const photo = (slug: string, name: string) => `/products/${slug}/${name}.webp`;
+export const photos = (slug: string, ...names: string[]) => names.map((n) => photo(slug, n));
+const gallery = (slug: string, count: number) =>
+  photos(slug, ...Array.from({ length: count }, (_, i) => `g${String(i + 1).padStart(2, "0")}`));
+/** One variant per size, each with its own studio photo named after the size (e.g. "45l"). */
+const sized = (slug: string, ...labels: string[]): Variant[] =>
+  labels.map((label) => ({ label, image: photo(slug, label.toLowerCase()) }));
 
-const KEYLESS_TOP: FeatureKey[] = [
-  "keyless", "aviationAluminium", "germanHardware", "waterproof", "shockproof",
-  "siliconeSeal", "softLiner", "twoHelmets", "camo",
-];
-const KEYLESS_SIDE: FeatureKey[] = [
-  "keyless", "aviationAluminium", "germanHardware", "waterproof", "shockproof",
-  "compressionCorners", "triangleHandles", "sShape",
-];
+const ALU_TOP: FeatureKey[] = ["aviationAluminium", "germanHardware", "waterproof", "shockproof", "siliconeSeal", "softLiner", "camo"];
+const ALU_SIDE: FeatureKey[] = ["aviationAluminium", "germanHardware", "waterproof", "shockproof", "compressionCorners", "triangleHandles"];
 
-function keylessSeries(code: "C004" | "C006" | "C007"): Product[] {
-  const id = code.toLowerCase();
-  return [
-    {
-      slug: `q-j2-${id}-keyless-topcase`,
-      model: `Q-J2-${code}`,
-      category: "aluminium-topcase",
-      kind: "keylessTopcase",
-      desc: "keylessTop",
-      volume: "30 – 65 L",
-      maxLoadKg: 10,
-      material: "aluminium",
-      lock: "keyless",
-      features: KEYLESS_TOP,
-      variants: sizes("30KL", "32KL", "36RKL", "45KL", "55KL", "65KL"),
-      badge: "keyless",
-      featured: true,
-    },
-    {
-      slug: `q-j2-${id}-keyless-sidecase`,
-      model: `Q-J2-${code}`,
-      category: "aluminium-sidecase",
-      kind: "keylessSidecase",
-      desc: "keylessSide",
-      volume: "28 / 36 L",
-      maxLoadKg: 10,
-      material: "aluminium",
-      lock: "keyless",
-      features: KEYLESS_SIDE,
-      variants: [{ label: "28KL" }, { label: "36KL" }, { label: "36KL", note: "sShape" }],
-      badge: "keyless",
-      featured: true,
-    },
-  ];
-}
+const SIDE_OPENING: LocalizedText = {
+  en: "A top case whose lid also opens to the side, so you can reach your gear without unloading anything strapped on top. Aviation-grade aluminium, German-made hardware and a soft, shock-absorbing liner.",
+  es: "Un baúl cuya tapa también se abre lateralmente, para llegar a tus cosas sin descargar lo que llevas amarrado encima. Aluminio aeronáutico, herrajes alemanes y un forro suave y amortiguador.",
+  zh: "箱盖除可上开外还能侧开，无需卸下绑在箱顶的物品即可取放随身物品。航空级铝合金、德国五金，配柔软减震内衬。",
+  it: "Un bauletto il cui coperchio si apre anche lateralmente, per raggiungere il contenuto senza togliere ciò che è fissato sopra. Alluminio aeronautico, minuteria tedesca e interno morbido e ammortizzante.",
+  fr: "Un top case dont le couvercle s'ouvre aussi sur le côté : accédez à vos affaires sans détacher ce qui est sanglé dessus. Aluminium aéronautique, quincaillerie allemande et doublure souple amortissante.",
+  id: "Top box yang tutupnya juga bisa dibuka dari samping, sehingga barang bisa diambil tanpa menurunkan muatan yang diikat di atasnya. Aluminium kelas penerbangan, komponen buatan Jerman, dan lapisan dalam peredam guncangan.",
+  ja: "フタが上だけでなく横にも開くトップケース。上に積んだ荷物を降ろさずに中身を出し入れできます。航空機グレードのアルミ、ドイツ製ハードウェア、柔らかい衝撃吸収インナー付き。",
+};
 
-const plastic = (slug: string, model: string, volume: number, versions: { keyless?: boolean; push?: boolean }): Product => ({
+const WHEEL_KEY: LocalizedText = {
+  en: "Detachable wheels and a trolley handle turn this key-lock aluminium top case into a rolling suitcase, so heavy luggage moves easily once you're off the bike.",
+  es: "Las ruedas desmontables y el asa trolley convierten este baúl de aluminio con llave en una maleta con ruedas, para mover el equipaje pesado con facilidad al bajar de la moto.",
+  zh: "可拆卸滚轮与拉杆让这款钥匙锁铝合金尾箱秒变行李箱，下车后也能轻松拖行重物。",
+  it: "Ruote rimovibili e maniglia trolley trasformano questo bauletto in alluminio con chiave in un trolley: i bagagli pesanti scorrono facilmente appena sceso dalla moto.",
+  fr: "Des roues amovibles et une poignée trolley transforment ce top case aluminium à clé en valise à roulettes : vos bagages lourds roulent facilement dès que vous descendez de moto.",
+  id: "Roda lepas-pasang dan gagang troli mengubah top box aluminium berkunci ini menjadi koper beroda, sehingga barang berat mudah ditarik setelah turun dari motor.",
+  ja: "脱着式ホイールとキャリーハンドルで、このキー式アルミトップケースがキャリーケースに。バイクを降りた後も重い荷物をラクに運べます。",
+};
+
+const LUGGAGE: LocalizedText = {
+  en: "Aluminium-alloy trolley suitcases with spinner wheels and a telescopic handle, in a wide range of colours and graphics. Built with the same materials and finish as COOCASE motorcycle cases.",
+  es: "Maletas trolley de aleación de aluminio con ruedas giratorias y asa telescópica, en una amplia gama de colores y gráficos. Fabricadas con los mismos materiales y acabados que las maletas para moto COOCASE.",
+  zh: "铝合金拉杆行李箱，配万向轮与伸缩拉杆，提供多种颜色与图案，采用与 COOCASE 摩托车箱相同的材料与工艺。",
+  it: "Trolley in lega di alluminio con ruote piroettanti e maniglia telescopica, in molti colori e grafiche. Stessi materiali e finiture delle valigie moto COOCASE.",
+  fr: "Valises trolley en alliage d'aluminium avec roues pivotantes et poignée télescopique, dans un large choix de couleurs et de graphismes. Mêmes matériaux et finitions que les valises moto COOCASE.",
+  id: "Koper troli paduan aluminium dengan roda putar dan gagang teleskopik, tersedia dalam banyak warna dan grafis. Dibuat dengan bahan dan finishing yang sama seperti box motor COOCASE.",
+  ja: "360度回転ホイールと伸縮ハンドルを備えたアルミ合金製スーツケース。豊富なカラーとグラフィック。COOCASE のバイク用ケースと同じ素材と仕上げです。",
+};
+
+// Plastic-case colour palette (supplier PU codes) — names from the photo files.
+const PALETTE: Record<string, LocalizedText> = {
+  "1355": { en: "Bright orange", zh: "亮橙", es: "Naranja brillante", it: "Arancio brillante", fr: "Orange vif", id: "Oranye cerah", ja: "ブライトオレンジ" },
+  "1478": { en: "Fluorescent green", zh: "荧光草绿", es: "Verde flúor", it: "Verde fluo", fr: "Vert fluo", id: "Hijau neon", ja: "蛍光グリーン" },
+  "148sm": { en: "Matte black", zh: "磨砂黑", es: "Negro mate", it: "Nero opaco", fr: "Noir mat", id: "Hitam doff", ja: "マットブラック" },
+  "1647": { en: "Bright silver", zh: "亮银", es: "Plata brillante", it: "Argento brillante", fr: "Argent brillant", id: "Perak cerah", ja: "ブライトシルバー" },
+  "2415": { en: "Bright blue", zh: "亮蓝", es: "Azul brillante", it: "Blu brillante", fr: "Bleu vif", id: "Biru cerah", ja: "ブライトブルー" },
+  "4325": { en: "Pink", zh: "粉红", es: "Rosa", it: "Rosa", fr: "Rose", id: "Merah muda", ja: "ピンク" },
+  "4432": { en: "Beige", zh: "米黄", es: "Beige", it: "Beige", fr: "Beige", id: "Krem", ja: "ベージュ" },
+  "4490": { en: "Pearl white", zh: "珍珠白", es: "Blanco perla", it: "Bianco perla", fr: "Blanc nacré", id: "Putih mutiara", ja: "パールホワイト" },
+  "5221": { en: "Light blue", zh: "浅蓝", es: "Azul claro", it: "Azzurro", fr: "Bleu clair", id: "Biru muda", ja: "ライトブルー" },
+  "5853": { en: "Metallic grey", zh: "金属灰", es: "Gris metalizado", it: "Grigio metallizzato", fr: "Gris métallisé", id: "Abu-abu metalik", ja: "メタリックグレー" },
+  "5854": { en: "Sparkle black", zh: "闪光黑", es: "Negro brillante", it: "Nero glitterato", fr: "Noir pailleté", id: "Hitam berkilau", ja: "スパークルブラック" },
+  "5855": { en: "Pearl yellow", zh: "珠光黄", es: "Amarillo perla", it: "Giallo perla", fr: "Jaune nacré", id: "Kuning mutiara", ja: "パールイエロー" },
+  "5857": { en: "Wine red", zh: "酒红", es: "Rojo vino", it: "Rosso vino", fr: "Bordeaux", id: "Merah anggur", ja: "ワインレッド" },
+  "5859": { en: "Translucent blue", zh: "透明蓝", es: "Azul translúcido", it: "Blu trasparente", fr: "Bleu translucide", id: "Biru transparan", ja: "クリアブルー" },
+  "6090": { en: "Sparkle red", zh: "闪鲜红", es: "Rojo brillante", it: "Rosso glitterato", fr: "Rouge pailleté", id: "Merah berkilau", ja: "スパークルレッド" },
+  "7156": { en: "Snow white", zh: "冰雪白", es: "Blanco nieve", it: "Bianco neve", fr: "Blanc neige", id: "Putih salju", ja: "スノーホワイト" },
+};
+const colours = (slug: string, ...codes: string[]): Colour[] =>
+  codes.map((c) => ({ code: `PU${c.replace(/[a-z]+$/, "")}`, label: PALETTE[c], image: photo(slug, `colour-${c}`) }));
+
+type PlasticVersions = { keyless?: boolean; key?: boolean; remote?: boolean };
+const plastic = (slug: string, name: string, volume: number, v: PlasticVersions, galleryCount: number, extra: Partial<Product> = {}): Product => ({
   slug,
-  model,
+  name,
   category: "plastic-topcase",
   kind: "plasticKeyless",
   desc: "plastic",
+  images: [photo(slug, v.keyless ? "keyless" : "key"), ...gallery(slug, galleryCount)],
   volume: `${volume} L`,
   maxLoadKg: 10,
   material: "plastic",
-  lock: versions.keyless && versions.push ? "both" : versions.keyless ? "keyless" : "key",
+  lock: v.keyless && v.key ? "both" : v.keyless ? "keyless" : "key",
   features: [
-    ...(versions.keyless ? (["keyless"] as FeatureKey[]) : []),
-    ...(versions.push ? (["pushButton", "remoteControl"] as FeatureKey[]) : []),
+    ...(v.keyless ? (["keyless"] as FeatureKey[]) : []),
+    ...(v.key ? (["keyLock"] as FeatureKey[]) : []),
+    ...(v.remote ? (["remoteControl"] as FeatureKey[]) : []),
     "ledBrakeLight", "waterproof", "shockproof",
   ],
   variants: [
-    ...(versions.keyless ? [{ label: model, note: "keyless" as const }] : []),
-    ...(versions.push ? [{ label: model, note: "push" as const }] : []),
+    ...(v.keyless ? [{ label: name, image: photo(slug, "keyless"), note: "keyless" as const }] : []),
+    ...(v.key ? [{ label: name, image: photo(slug, "key"), note: "keyLock" as const }] : []),
+    ...(v.remote ? [{ label: `${name} L`, image: photo(slug, "remote"), note: "remote" as const }] : []),
   ],
-  badge: versions.keyless ? "keyless" : "pushButton",
+  badge: v.keyless ? "keyless" : undefined,
+  ...extra,
 });
 
-const [c004Top, c004Side] = keylessSeries("C004");
-const [c006Top, c006Side] = keylessSeries("C006");
-const [c007Top, c007Side] = keylessSeries("C007");
-
+// ── Catalogue ────────────────────────────────────────────────────────────────
 export const products: Product[] = [
-  // ── Aluminium topcases ──────────────────────────────────────────────────────
-  c004Top,
-  c006Top,
-  c007Top,
+  // Aluminium top cases
   {
-    slug: "q-j2-stamping-c",
-    model: "Q-J2-Stamping-C",
+    slug: "keyless-aluminium-top-case",
+    name: { en: "Keyless Aluminium Top Case", zh: "无钥匙铝合金尾箱", es: "Baúl de aluminio sin llave", it: "Bauletto in alluminio senza chiave", fr: "Top case aluminium sans clé", id: "Top Box Aluminium Tanpa Kunci", ja: "キーレス アルミトップケース" },
     category: "aluminium-topcase",
     kind: "keylessTopcase",
-    desc: "stampingC",
-    volume: "36 – 65 L",
+    desc: "keylessTop",
+    images: [photo("keyless-aluminium-top-case", "45l"), ...gallery("keyless-aluminium-top-case", 10)],
+    volume: "32 – 65 L",
     maxLoadKg: 10,
     material: "aluminium",
     lock: "keyless",
-    features: ["keyless", "debossed", "aviationAluminium", "germanHardware", "waterproof", "shockproof", "twoHelmets", "softLiner"],
-    variants: sizes("36KL", "45KL", "55KL", "65KL"),
-    badge: "debossed",
+    features: ["keyless", "twoHelmets", ...ALU_TOP],
+    variants: sized("keyless-aluminium-top-case", "32L", "36L", "45L", "55L", "65L"),
+    badge: "keyless",
+    featured: true,
   },
   {
-    slug: "q-j2-stamping-x",
-    model: "Q-J2-Stamping-X",
-    category: "aluminium-topcase",
-    kind: "topcase",
-    desc: "stampingX",
-    volume: "45 / 55 / 65 L",
-    maxLoadKg: 10,
-    material: "aluminium",
-    lock: "key",
-    features: ["debossed", "aviationAluminium", "germanHardware", "waterproof", "shockproof", "twoHelmets", "softLiner"],
-    variants: sizes("45L", "55L", "65L"),
-    badge: "debossed",
-  },
-  {
-    slug: "q-j2-tass-adjustable-backrest",
-    model: "Q-J2 TASS",
+    slug: "keyless-tass-backrest-top-case",
+    name: { en: "Keyless TASS Backrest Top Case", zh: "无钥匙 TASS 靠背尾箱", es: "Baúl TASS con respaldo, sin llave", it: "Bauletto TASS con schienale, senza chiave", fr: "Top case TASS à dosseret, sans clé", id: "Top Box TASS dengan Sandaran, Tanpa Kunci", ja: "キーレス TASS バックレスト付きトップケース" },
     category: "aluminium-topcase",
     kind: "backrestTopcase",
     desc: "tass",
-    volume: "45 / 55 / 65 L",
+    images: [photo("keyless-tass-backrest-top-case", "g01"), photo("keyless-tass-backrest-top-case", "ab55l"), ...gallery("keyless-tass-backrest-top-case", 8).slice(1)],
+    volume: "55 / 65 L",
     maxLoadKg: 10,
     material: "aluminium",
     lock: "keyless",
-    features: ["integratedBackrest", "keyless", "aviationAluminium", "germanHardware", "waterproof", "shockproof", "twoHelmets"],
-    variants: [{ label: "AB45KL" }, { label: "AB55KL" }, { label: "AB65KL" }, { label: "So45KL", note: "sideOpen" }],
+    features: ["integratedBackrest", "keyless", ...ALU_TOP],
+    variants: sized("keyless-tass-backrest-top-case", "AB55L", "AB65L"),
+    badge: "integratedBackrest",
+    featured: true,
+  },
+  {
+    slug: "keyless-side-opening-top-case",
+    name: { en: "Keyless Side-Opening Top Case", zh: "无钥匙侧开尾箱", es: "Baúl de apertura lateral, sin llave", it: "Bauletto ad apertura laterale, senza chiave", fr: "Top case à ouverture latérale, sans clé", id: "Top Box Buka Samping Tanpa Kunci", ja: "キーレス サイドオープン トップケース" },
+    category: "aluminium-topcase",
+    kind: "keylessTopcase",
+    desc: SIDE_OPENING,
+    images: [photo("keyless-side-opening-top-case", "so45l"), ...gallery("keyless-side-opening-top-case", 6)],
+    volume: "45 L",
+    maxLoadKg: 10,
+    material: "aluminium",
+    lock: "keyless",
+    features: ["keyless", ...ALU_TOP],
+    variants: [{ label: "SO45L", image: photo("keyless-side-opening-top-case", "so45l"), note: "sideOpen" }],
+    badge: "keyless",
+    featured: true,
+  },
+  {
+    slug: "key-aluminium-top-case",
+    name: { en: "Aluminium Top Case (Key Lock)", zh: "铝合金尾箱（钥匙锁）", es: "Baúl de aluminio (con llave)", it: "Bauletto in alluminio (con chiave)", fr: "Top case aluminium (à clé)", id: "Top Box Aluminium (Kunci)", ja: "アルミトップケース（キー式）" },
+    category: "aluminium-topcase",
+    kind: "topcase",
+    desc: "classicTop",
+    images: [photo("key-aluminium-top-case", "45l"), ...gallery("key-aluminium-top-case", 9)],
+    volume: "27 – 65 L",
+    maxLoadKg: 10,
+    material: "aluminium",
+    lock: "key",
+    features: ["keyLock", "twoHelmets", ...ALU_TOP],
+    variants: sized("key-aluminium-top-case", "27L", "30L", "32L", "36L", "45L", "55L", "65L"),
+    badge: "camo",
+  },
+  {
+    slug: "key-tass-backrest-top-case",
+    name: { en: "TASS Backrest Top Case (Key Lock)", zh: "TASS 靠背尾箱（钥匙锁）", es: "Baúl TASS con respaldo (con llave)", it: "Bauletto TASS con schienale (con chiave)", fr: "Top case TASS à dosseret (à clé)", id: "Top Box TASS dengan Sandaran (Kunci)", ja: "TASS バックレスト付きトップケース（キー式）" },
+    category: "aluminium-topcase",
+    kind: "backrestTopcase",
+    desc: "tass",
+    images: [photo("key-tass-backrest-top-case", "g01"), ...gallery("key-tass-backrest-top-case", 9).slice(1)],
+    volume: "45 – 65 L",
+    maxLoadKg: 10,
+    material: "aluminium",
+    lock: "key",
+    features: ["integratedBackrest", "keyLock", ...ALU_TOP],
+    variants: [
+      ...sized("key-tass-backrest-top-case", "AB45L", "AB55L", "AB65L"),
+      { label: "ABSO45L", image: photo("key-tass-backrest-top-case", "abso45l"), note: "sideOpen" },
+    ],
     badge: "integratedBackrest",
   },
   {
-    slug: "q-j2-38kl-dual-use",
-    model: "Q-J2-38KL",
+    slug: "key-side-opening-top-case",
+    name: { en: "Side-Opening Top Case (Key Lock)", zh: "侧开尾箱（钥匙锁）", es: "Baúl de apertura lateral (con llave)", it: "Bauletto ad apertura laterale (con chiave)", fr: "Top case à ouverture latérale (à clé)", id: "Top Box Buka Samping (Kunci)", ja: "サイドオープン トップケース（キー式）" },
     category: "aluminium-topcase",
+    kind: "topcase",
+    desc: SIDE_OPENING,
+    images: [photo("key-side-opening-top-case", "so45l"), ...gallery("key-side-opening-top-case", 7)],
+    volume: "45 L",
+    maxLoadKg: 10,
+    material: "aluminium",
+    lock: "key",
+    features: ["keyLock", ...ALU_TOP],
+    variants: [{ label: "SO45L", image: photo("key-side-opening-top-case", "so45l"), note: "sideOpen" }],
+  },
+
+  // Aluminium side cases
+  {
+    slug: "keyless-aluminium-side-cases",
+    name: { en: "Keyless Aluminium Side Cases", zh: "无钥匙铝合金边箱", es: "Maletas laterales de aluminio sin llave", it: "Valigie laterali in alluminio senza chiave", fr: "Valises latérales aluminium sans clé", id: "Side Box Aluminium Tanpa Kunci", ja: "キーレス アルミサイドケース" },
+    category: "aluminium-sidecase",
+    kind: "keylessSidecase",
+    desc: "keylessSide",
+    images: [photo("keyless-aluminium-side-cases", "36l"), ...gallery("keyless-aluminium-side-cases", 6)],
+    volume: "28 / 36 L",
+    maxLoadKg: 10,
+    material: "aluminium",
+    lock: "keyless",
+    features: ["keyless", ...ALU_SIDE],
+    variants: sized("keyless-aluminium-side-cases", "28L", "36L"),
+    badge: "keyless",
+    featured: true,
+  },
+  {
+    slug: "keyless-38l-dual-use-case",
+    name: { en: "Keyless 38L Dual-Use Case", zh: "无钥匙 38L 两用箱", es: "Maleta de doble uso 38 L, sin llave", it: "Valigia 38L a doppio uso, senza chiave", fr: "Valise double usage 38 L, sans clé", id: "Box Dua Fungsi 38L Tanpa Kunci", ja: "キーレス 38L 2WAYケース" },
+    category: "aluminium-sidecase",
     kind: "dualUse",
     desc: "dualUse",
+    images: [photo("keyless-38l-dual-use-case", "38l"), ...gallery("keyless-38l-dual-use-case", 9)],
     volume: "38 L",
     maxLoadKg: 10,
     material: "aluminium",
     lock: "keyless",
-    features: ["keyless", "aviationAluminium", "germanHardware", "waterproof", "shockproof", "compressionCorners", "triangleHandles", "sShape"],
-    variants: [{ label: "38KL" }, { label: "38KL", note: "sShape" }],
+    features: ["keyless", ...ALU_SIDE],
+    variants: sized("keyless-38l-dual-use-case", "38L"),
     badge: "keyless",
+    featured: true,
   },
   {
-    slug: "q-j2-coo-topcase",
-    model: "Q-J2-C004 / C006 / C007",
-    category: "aluminium-topcase",
-    kind: "topcase",
-    desc: "classicTop",
-    volume: "30 – 65 L",
-    maxLoadKg: 10,
-    material: "aluminium",
-    lock: "key",
-    features: ["keyLock", "aviationAluminium", "germanHardware", "waterproof", "shockproof", "twoHelmets", "softLiner", "quickRelease", "camo"],
-    variants: [{ label: "30L", note: "quickRelease" }, ...sizes("32L", "36L", "45L", "55L", "65L")],
-    badge: "camo",
-  },
-  {
-    slug: "reflective-series-topcase",
-    model: "Reflective Series",
-    category: "aluminium-topcase",
-    kind: "reflectiveTopcase",
-    desc: "reflective",
-    maxLoadKg: 10,
-    material: "aluminium",
-    lock: "key",
-    features: ["reflective", "aviationAluminium", "waterproof", "shockproof", "customisable"],
-    variants: sizes("#1", "#2", "#3", "#4", "#5", "#6", "#7"),
-    badge: "reflective",
-  },
-
-  // ── Aluminium sidecases ─────────────────────────────────────────────────────
-  c004Side,
-  c006Side,
-  c007Side,
-  {
-    slug: "q-j2-coo-sidecase",
-    model: "Q-J2-C004 / C006 / C007",
+    slug: "key-aluminium-side-cases",
+    name: { en: "Aluminium Side Cases (Key Lock)", zh: "铝合金边箱（钥匙锁）", es: "Maletas laterales de aluminio (con llave)", it: "Valigie laterali in alluminio (con chiave)", fr: "Valises latérales aluminium (à clé)", id: "Side Box Aluminium (Kunci)", ja: "アルミサイドケース（キー式）" },
     category: "aluminium-sidecase",
     kind: "sidecase",
     desc: "classicSide",
+    images: [photo("key-aluminium-side-cases", "g01"), ...gallery("key-aluminium-side-cases", 9).slice(1)],
     volume: "24 – 46 L",
     maxLoadKg: 10,
     material: "aluminium",
     lock: "key",
-    features: ["keyLock", "aviationAluminium", "germanHardware", "waterproof", "shockproof", "compressionCorners", "triangleHandles", "sShape"],
-    variants: [
-      ...sizes("24L", "28L", "36L"),
-      { label: "36L", note: "sShape" },
-      { label: "46L" },
-      { label: "46L", note: "sShape" },
-    ],
-  },
-  {
-    slug: "mini-series",
-    model: "MINI Series",
-    category: "aluminium-sidecase",
-    kind: "miniCase",
-    desc: "mini",
-    volume: "15 – 27 L",
-    maxLoadKg: 10,
-    material: "aluminium",
-    lock: "key",
-    features: ["customisable", "quickRelease", "compressionCorners", "triangleHandles", "germanHardware", "waterproof", "shockproof"],
-    variants: [
-      ...sizes("15L", "17L", "19L"),
-      { label: "20L", note: "quickRelease" },
-      { label: "27L" },
-      { label: "27L", note: "quickRelease" },
-    ],
-    badge: "customisable",
+    features: ["keyLock", "camo", ...ALU_SIDE],
+    variants: sized("key-aluminium-side-cases", "24L", "28L", "36L", "46L"),
+    badge: "camo",
   },
 
-  // ── Plastic topcases ────────────────────────────────────────────────────────
-  plastic("plastic-fusion-v28", "Fusion V28", 28, { keyless: true, push: true }),
-  plastic("plastic-wizard-v36", "Wizard V36", 36, { keyless: true, push: true }),
-  plastic("plastic-vivo-s28", "Vivo S28", 28, { keyless: true, push: true }),
-  plastic("plastic-astra-s48", "Astra S48", 48, { keyless: true, push: true }),
-  plastic("plastic-reflex-v50", "Reflex V50", 50, { keyless: true, push: true }),
-  plastic("plastic-urban-s40", "Urban S40", 40, { push: true }),
-  plastic("plastic-s30", "S30", 28, { keyless: true }),
+  // Plastic top cases
+  plastic("plastic-vivo-s28", "Vivo S28", 28, { keyless: true, key: true }, 5),
+  plastic("plastic-s30", "S30", 28, { keyless: true, key: true }, 6, {
+    colours: colours("plastic-s30", "1355", "1478", "1647", "2415", "4325", "4432", "4490", "5221", "5853", "5854", "5855", "5857", "5859", "6090", "7156"),
+  }),
+  plastic("plastic-urban-s40", "Urban S40", 40, { key: true }, 5),
+  plastic("plastic-astra-s48", "Astra S48", 48, { keyless: true, key: true, remote: true }, 6),
+  plastic("plastic-fusion-v28", "Fusion V28", 28, { keyless: true, key: true }, 6, {
+    colours: colours("plastic-fusion-v28", "1355", "1478", "148sm", "1647", "4325", "4432", "4490", "5221", "5853", "5854", "5855", "5857", "6090", "7156"),
+  }),
+  plastic("plastic-wizard-v36", "Wizard V36", 36, { keyless: true, key: true, remote: true }, 6, {
+    colours: colours("plastic-wizard-v36", "1355", "1478", "148sm", "1647", "2415", "4325", "4432", "4490", "5221", "5853", "5854", "5855", "5857", "5859", "6090", "7156"),
+  }),
+  plastic("plastic-reflex-v50", "Reflex V50", 50, { keyless: true, key: true }, 7),
 
-  // ── Specialty luggage ───────────────────────────────────────────────────────
+  // Specialty luggage
   {
-    slug: "detachable-wheel-keyless-case",
-    model: "Detachable Wheel Case",
+    slug: "keyless-wheel-top-case",
+    name: { en: "Keyless Detachable-Wheel Case", zh: "无钥匙可拆滚轮箱", es: "Maleta con ruedas desmontables, sin llave", it: "Valigia con ruote rimovibili, senza chiave", fr: "Valise à roues amovibles, sans clé", id: "Box Roda Lepas-Pasang Tanpa Kunci", ja: "キーレス 脱着式ホイールケース" },
     category: "specialty",
     kind: "wheelCase",
     desc: "wheel",
+    images: [photo("keyless-wheel-top-case", "g01"), photo("keyless-wheel-top-case", "58l"), ...gallery("keyless-wheel-top-case", 9).slice(1)],
     volume: "48 / 58 / 68 L",
     maxLoadKg: 10,
     material: "aluminium",
     lock: "keyless",
-    features: ["detachableWheels", "keyless", "aviationAluminium", "germanHardware", "shockproof"],
-    variants: sizes("48L", "58L", "68L"),
+    features: ["detachableWheels", "keyless", "aviationAluminium", "germanHardware", "waterproof", "shockproof"],
+    variants: sized("keyless-wheel-top-case", "48L", "58L", "68L"),
+    badge: "detachableWheels",
+    featured: true,
+  },
+  {
+    slug: "key-wheel-top-case",
+    name: { en: "Detachable-Wheel Case (Key Lock)", zh: "可拆滚轮箱（钥匙锁）", es: "Maleta con ruedas desmontables (con llave)", it: "Valigia con ruote rimovibili (con chiave)", fr: "Valise à roues amovibles (à clé)", id: "Box Roda Lepas-Pasang (Kunci)", ja: "脱着式ホイールケース（キー式）" },
+    category: "specialty",
+    kind: "wheelCase",
+    desc: WHEEL_KEY,
+    images: [photo("key-wheel-top-case", "g01"), photo("key-wheel-top-case", "48l"), ...gallery("key-wheel-top-case", 10).slice(1)],
+    volume: "48 / 58 / 68 L",
+    maxLoadKg: 10,
+    material: "aluminium",
+    lock: "key",
+    features: ["detachableWheels", "keyLock", "aviationAluminium", "germanHardware", "waterproof", "shockproof"],
+    variants: sized("key-wheel-top-case", "48L", "58L", "68L"),
     badge: "detachableWheels",
   },
   {
-    slug: "custom-series-2",
-    model: "Custom Series 2",
+    slug: "aluminium-luggage-case",
+    name: { en: "Aluminium Luggage Case", zh: "铝合金行李箱", es: "Maleta trolley de aluminio", it: "Valigia trolley in alluminio", fr: "Valise trolley en aluminium", id: "Koper Aluminium", ja: "アルミ スーツケース" },
     category: "specialty",
     kind: "customCase",
-    desc: "custom2",
-    volume: "22 / 90 / 160 L",
-    maxLoadKg: 10,
+    desc: LUGGAGE,
+    images: [photo("aluminium-luggage-case", "main"), ...gallery("aluminium-luggage-case", 12)],
     material: "aluminium",
-    features: ["customisable", "foam", "aviationAluminium", "germanHardware", "shockproof"],
-    variants: sizes("22L", "90L", "160L"),
-    badge: "customisable",
-  },
-
-  // ── Racks & accessories ─────────────────────────────────────────────────────
-  {
-    slug: "model-specific-racks",
-    model: "COOCASE Rack Series",
-    category: "racks-accessories",
-    kind: "rack",
-    desc: "modelRacks",
-    material: "steel",
-    features: ["universalFit", "stainless", "quickAssembly"],
-    fitmentList: true,
-    badge: "universalFit",
-  },
-  {
-    slug: "u03-multifunctional-side-racks",
-    model: "U-03 Side Racks",
-    category: "racks-accessories",
-    kind: "rack",
-    desc: "sideRack",
-    maxLoadKg: 25,
-    material: "steel",
-    features: ["stainless", "quickAssembly", "universalFit"],
-    badge: "universalFit",
-  },
-  {
-    slug: "universal-racks",
-    model: "Universal Racks A / B / C / D",
-    category: "racks-accessories",
-    kind: "rack",
-    desc: "universalRacks",
-    material: "steel",
-    features: ["universalFit", "quickAssembly"],
-    variants: sizes("Type A", "Type B", "Type C", "Type D"),
-  },
-  {
-    slug: "topcase-base-plates",
-    model: "Base Plates & Locks",
-    category: "racks-accessories",
-    kind: "accessory",
-    desc: "basePlates",
-    material: "steel",
-    features: ["universalFit", "keyless"],
-    variants: sizes("Q-J2", "Q-J2-Stamping-C", "Q-J2-Stamping-X", "Q-J2-Economic", "X-Series", "Keyless lock", "4th gen lock", "3rd gen lock"),
-  },
-  {
-    slug: "inner-and-divider-bags",
-    model: "Inner & Divider Bags",
-    category: "racks-accessories",
-    kind: "accessory",
-    desc: "bags",
-    material: "fabric",
-    features: ["multiPocket", "shockproof"],
-    variants: sizes("Inner bag 28 / 36L", "Inner bag 45 / 55 / 65L", "Divider bag", "Thermal bag"),
-  },
-  {
-    slug: "backrests",
-    model: "Backrests & AB Base",
-    category: "racks-accessories",
-    kind: "accessory",
-    desc: "backrests",
-    material: "steel",
-    features: ["integratedBackrest", "universalFit"],
-    variants: sizes("Premium", "Economic", "AB base"),
-  },
-  {
-    slug: "plastic-topcase-accessories",
-    model: "Plastic Topcase Accessories",
-    category: "racks-accessories",
-    kind: "accessory",
-    desc: "plasticAcc",
-    material: "plastic",
-    features: ["ledBrakeLight"],
-    variants: sizes("Backrest A / B / C", "Inner liner", "Brake light"),
-  },
-
-  // ── Dealer display racks ────────────────────────────────────────────────────
-  {
-    slug: "dealer-display-racks",
-    model: "Display Racks",
-    category: "dealer-display",
-    kind: "display",
-    desc: "display",
-    material: "steel",
-    features: ["quickAssembly"],
-    variants: sizes("Jumbo 7–13", "3 cases A", "3 cases B", "4 cases", "6 cases"),
+    features: ["aviationAluminium", "camo", "customisable"],
+    badge: "camo",
   },
 ];
 
-export const rackBrands = [
-  "BMW", "Benelli", "CFMoto", "Ducati", "Gilera", "Honda", "Kawasaki", "Kove", "KTM", "Kymco",
-  "LML", "Peugeot", "Piaggio", "QJMotor", "Royal Enfield", "Suzuki", "SYM", "Triumph", "Voge",
-  "Yamaha", "Zongshen", "Zontes",
-];
-
-/** The product's own photos, or the temporary stock photos for its category. */
+/** The product's own photos, or the optional stock photos for its category. */
 export function productPhotos(p: Product): string[] {
   if (p.images?.length) return p.images;
   const pool = placeholderPhotos[p.category] ?? [];
@@ -455,8 +416,10 @@ export function productPhotos(p: Product): string[] {
   return [...pool.slice(n), ...pool.slice(0, n)];
 }
 
+export const isPlaceholderPhoto = (src: string) => Object.values(placeholderPhotos).some((pool) => pool?.includes(src));
+
 export function categoryPhoto(c: CategoryId) {
-  return categoryImages[c] ?? placeholderPhotos[c]?.[0];
+  return categoryImages[c] ?? productPhotos(products.find((p) => p.category === c)!)[0];
 }
 
 export function getProduct(slug: string) {

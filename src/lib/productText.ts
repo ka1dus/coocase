@@ -11,6 +11,7 @@ const fromTable = <K extends string>(table: Record<K, string>, locale: Locale, v
 /** Translated text accessors for a product (dictionary keys or inline text). */
 export function productText(t: Dictionary, locale: Locale) {
   return {
+    name: (p: Product) => (typeof p.name === "string" ? p.name : localize(locale, p.name)),
     kind: (p: Product) => fromTable(t.kinds, locale, p.kind),
     desc: (p: Product) => fromTable(t.descs, locale, p.desc),
     feature: (f: Product["features"][number]) => fromTable(t.features, locale, f),

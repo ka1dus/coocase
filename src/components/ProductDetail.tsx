@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, Box, Check, KeyRound, Layers, Maximize2, Weight } from "lucide-react";
-import { productPhotos, rackBrands, type Product, type Variant } from "@/data/products";
+import { productPhotos, type Product, type Variant } from "@/data/products";
 import { useI18n } from "@/i18n/provider";
 import { format } from "@/i18n";
 import { href } from "@/lib/paths";
@@ -16,6 +16,7 @@ export default function ProductDetail({ product, related }: { product: Product; 
   const { locale, t } = useI18n();
   const pt = productText(t, locale);
   const kind = pt.kind(product);
+  const title = pt.name(product);
   const variantLabel = (v: Variant) => (v.note ? `${v.label} · ${pt.note(v.note)}` : v.label);
 
   // Gallery: product photos, then any variant photos. Empty until images are added.
@@ -26,11 +27,12 @@ export default function ProductDetail({ product, related }: { product: Product; 
     seen.add(src);
     gallery.push({ src, caption });
   };
-  productPhotos(product).forEach((src) => push(src, product.model));
+  productPhotos(product).forEach((src) => push(src, title));
   product.variants?.forEach((v) => push(v.image, variantLabel(v)));
 
   const [active, setActive] = useState(0);
   const lightbox = useLightbox(gallery);
+  const colourLightbox = useLightbox((product.colours ?? []).map((c) => ({ src: c.image, caption: `${localize(locale, c.label)} · ${c.code}` })));
   const current = gallery[active];
 
   const materialLabel = {
@@ -70,7 +72,7 @@ export default function ProductDetail({ product, related }: { product: Product; 
                 <button onClick={() => lightbox.open(active)} className="absolute inset-0" aria-label={t.common.zoom}>
                   <ProductImage
                     src={current.src}
-                    alt={current.caption ?? product.model}
+                    alt={current.caption ?? title}
                     category={product.category}
                     priority
                     sizes="(min-width: 1024px) 50vw, 100vw"
@@ -82,9 +84,9 @@ export default function ProductDetail({ product, related }: { product: Product; 
                 </button>
               ) : (
                 <ProductImage
-                  alt={`${product.model} — ${kind}`}
+                  alt={`${title} — ${kind}`}
                   category={product.category}
-                  title={product.model}
+                  title={title}
                   subtitle={kind}
                   comingSoon={t.common.imageComingSoon}
                 />
@@ -116,7 +118,7 @@ export default function ProductDetail({ product, related }: { product: Product; 
           {/* Info */}
           <div>
             <p className="eyebrow">{t.categories[product.category].name}</p>
-            <h1 className="mt-3 font-display text-4xl font-bold uppercase leading-none sm:text-5xl">{product.model}</h1>
+            <h1 className="mt-3 font-display text-4xl font-bold uppercase leading-none sm:text-5xl">{title}</h1>
             <p className="mt-2 text-lg text-brand-steel">{kind}</p>
             <p className="mt-6 leading-relaxed text-brand-carbon/80">{pt.desc(product)}</p>
 
@@ -216,19 +218,28 @@ export default function ProductDetail({ product, related }: { product: Product; 
         </section>
       )}
 
-      {/* Rack brands */}
-      {product.fitmentList && (
+      {/* Colour options */}
+      {product.colours && product.colours.length > 0 && (
         <section className="border-t border-brand-line py-14">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h2 className="font-display text-2xl font-bold uppercase">{t.product.brandsTitle}</h2>
-            <p className="mt-2 text-sm text-brand-steel">{t.product.fitmentText}</p>
-            <ul className="mt-5 flex flex-wrap gap-2">
-              {rackBrands.map((b) => (
-                <li key={b} className="border border-brand-line px-3 py-1.5 font-mono text-xs uppercase tracking-wider">
-                  {b}
-                </li>
+            <h2 className="font-display text-2xl font-bold uppercase">{t.product.coloursTitle}</h2>
+            <div className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-8">
+              {product.colours.map((c, i) => (
+                <button
+                  key={c.code}
+                  onClick={() => colourLightbox.open(i)}
+                  className="border border-brand-line bg-brand-white text-left transition-colors hover:border-brand-carbon"
+                >
+                  <div className="relative aspect-square bg-white">
+                    <ProductImage src={c.image} alt={localize(locale, c.label)} category={product.category} sizes="(min-width: 1024px) 12vw, 33vw" className="object-contain p-2" />
+                  </div>
+                  <div className="border-t border-brand-line px-2 py-2">
+                    <p className="text-xs font-semibold leading-tight">{localize(locale, c.label)}</p>
+                    <p className="font-mono text-[10px] text-brand-steel">{c.code}</p>
+                  </div>
+                </button>
               ))}
-            </ul>
+            </div>
           </div>
         </section>
       )}
@@ -249,6 +260,7 @@ export default function ProductDetail({ product, related }: { product: Product; 
       )}
 
       {lightbox.element}
+      {colourLightbox.element}
     </>
   );
 }

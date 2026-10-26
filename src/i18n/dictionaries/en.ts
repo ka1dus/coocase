@@ -1,8 +1,7 @@
 const en = {
   meta: {
     title: "COOCASE | Freedom Without Key",
-    description:
-      "COOCASE keyless aluminium motorcycle top cases, side cases, racks and accessories. Designed since 2006, sold through distributors across Europe, the Americas, the Middle East and Asia.",
+    description: "COOCASE keyless aluminium and plastic motorcycle top cases, side cases and wheeled luggage. Designed and manufactured since 2006, sold through distributors across Europe, the Americas, the Middle East, Asia and Oceania.",
   },
   nav: {
     home: "Home",
@@ -34,7 +33,7 @@ const en = {
     imageComingSoon: "Image coming soon",
   },
   home: {
-    badge: "Est. 2006 · Singapore",
+    badge: "Est. 2006",
     heroTitle1: "Freedom",
     heroTitle2: "without",
     heroTitle3: "key",
@@ -49,7 +48,7 @@ const en = {
       "TASS adjustable backrest",
       "Silicone weatherproofing",
       "10 kg max load",
-      "15 L – 160 L range",
+      "27 L – 68 L top cases",
       "German-made hardware",
       "38 countries served",
     ],
@@ -62,8 +61,8 @@ const en = {
       { title: "Silicone weatherproofing", text: "A silicone seal inside the lid, shielded from UV, keeps water and dust out through rain and highway spray." },
     ],
     featuredEyebrow: "Freedom without key",
-    featuredTitle: "The keyless COO-Series",
-    featuredText: "Three designs, six top case sizes from 30 to 65 litres, and matching keyless side cases.",
+    featuredTitle: "The keyless range",
+    featuredText: "Top cases, side cases and wheeled cases with the COOCASE keyless locking system.",
     anatomyEyebrow: "Exceptional functionality",
     anatomyTitle: "Every detail, engineered",
     anatomyText:
@@ -72,7 +71,7 @@ const en = {
     categoriesTitle: "Built for every mount point",
     fullCatalog: "Full catalog",
     networkEyebrow: "Global distribution network",
-    networkTitle: "Ridden on five continents",
+    networkTitle: "Wherever you ride",
     networkText:
       "COOCASE products reach riders through authorised distributors across Europe, the Americas, the Middle East, Asia and Oceania.",
     networkCta: "Find a distributor",
@@ -138,12 +137,10 @@ const en = {
     { title: "Case interior", text: "Multi-pocket organiser, quick-drying high-density PU liner, integrated X-band and a holder strap for the lid." },
   ],
   categories: {
-    "aluminium-topcase": { name: "Aluminium topcases", short: "Topcases", text: "Keyless and key-lock aluminium top cases from 30 to 65 litres." },
-    "aluminium-sidecase": { name: "Aluminium sidecases", short: "Sidecases", text: "Keyless and classic side cases from 15 to 46 litres, including S-shape." },
+    "aluminium-topcase": { name: "Aluminium topcases", short: "Topcases", text: "Keyless and key-lock aluminium top cases from 27 to 65 litres, including TASS backrest and side-opening models." },
+    "aluminium-sidecase": { name: "Aluminium sidecases", short: "Sidecases", text: "Keyless and key-lock aluminium side cases from 24 to 46 litres, plus the 38-litre dual-use case." },
     "plastic-topcase": { name: "Plastic topcases", short: "Plastic topcases", text: "Light, multifunctional top cases with LED brake lights, 28 to 50 litres." },
-    specialty: { name: "Specialty luggage", short: "Specialty", text: "Wheeled cases and custom aluminium suitcases up to 160 litres." },
-    "racks-accessories": { name: "Racks & accessories", short: "Racks & accessories", text: "Universal and model-specific racks, base plates, bags and backrests." },
-    "dealer-display": { name: "Dealer display racks", short: "Dealer displays", text: "Showroom stands for 3 to 13 cases." },
+    specialty: { name: "Specialty luggage", short: "Specialty", text: "Detachable-wheel cases from 48 to 68 litres and aluminium trolley luggage." },
   },
   kinds: {
     keylessTopcase: "Aluminium-alloy keyless topcase",
@@ -152,14 +149,9 @@ const en = {
     sidecase: "Aluminium-alloy sidecase",
     dualUse: "Aluminium-alloy dual-use case",
     backrestTopcase: "Aluminium topcase with adjustable backrest",
-    reflectiveTopcase: "Reflective aluminium topcase",
-    miniCase: "Mini aluminium-alloy case",
     plasticKeyless: "Multifunctional plastic topcase",
-    wheelCase: "Detachable-wheel keyless luggage case",
-    customCase: "Custom aluminium suitcase",
-    rack: "Rack system",
-    accessory: "Accessory",
-    display: "Dealer display rack",
+    wheelCase: "Aluminium top case with detachable wheels",
+    customCase: "Aluminium trolley suitcase",
   },
   descs: {
     keylessTop:
@@ -172,40 +164,15 @@ const en = {
       "Aluminium-alloy side cases fitted with multi-functional compression corners and high-quality aluminium-alloy triangular handles for strength and easy handling.",
     dualUse:
       "A dual-use case that works as either a top case or a side case, fitted with multi-functional compression corners and high-quality aluminium-alloy triangular handles.",
-    stampingC:
-      "The keyless locking system of the COO-Series with a debossed 'C' side panel: a striking design with the durability of every COOCASE. Fits two open-face helmets.",
-    stampingX:
-      "A debossed 'X' front panel gives this key-lock top case a bold, technical look. Large capacity for two open-face helmets, with the same soft, shock-absorbing liner as every COO-Series case.",
     tass:
       "TASS — Tour Active Spine Support. The world's first top case with an integrated adjustable backrest, designed for passenger comfort on every ride. Available with standard or side-opening lids.",
-    reflective:
-      "Aluminium top cases wrapped in reflective graphics that light up under headlights at night. Choose from adventure world maps, Japan, camo and floral designs.",
-    mini:
-      "Compact aluminium-alloy cases for scooters, light motorcycles and fleets, with compression corners and aluminium triangular handles. Quick-release versions are available and sizes can be customised.",
-    plastic:
-      "A multifunctional plastic top case with an LED brake light, waterproof seal and shock-resistant shell. Choose the keyless combination version or the push-button version with remote control.",
+    plastic: "A multifunctional plastic top case with an LED brake light, waterproof seal and shock-resistant shell. Available with a keyless combination lock or a key lock; selected models also come in a remote-control version.",
     wheel:
       "Detachable wheels and a trolley handle turn a COOCASE keyless top case into a suitcase, so heavy luggage rolls easily after a long ride.",
-    custom2:
-      "Custom aluminium suitcases: a cabin-size boarding case, a 90 L case that holds two 45 L outer cases, and the 160 L Special Series with impact-absorbing foam for up to four helmets.",
-    universalRacks:
-      "Universal mounting solutions: Type A adapter plates, Type B side-rack brackets, Type C kits for fitting COOCASE keyless cases to side racks (including Italian-brand racks), and Type D.",
-    sideRack:
-      "U-03 multifunctional side racks in stainless steel (silver) or steel (black), designed for quick assembly and disassembly on most motorcycle models.",
-    modelRacks:
-      "Model-specific top racks, side racks and crash bars for the major motorcycle brands. We keep developing racks for new models, so every rider gets a secure, seamless fit for their COOCASE.",
-    basePlates:
-      "Base plates and locks for every COOCASE top case line: Q-J2, Q-J2-Stamping-C, Q-J2-Stamping-X, Q-J2-Economic and X-Series. New-generation plates for the Q-J2 family.",
-    bags:
-      "Removable inner bags fit perfectly inside the outer case, protecting your items and reducing noise and vibration. Divider bags make use of every litre.",
-    backrests:
-      "Premium and economic backrests for passenger comfort, plus the adjustable backrest (AB) base. Premium backrests carry a firmly fixed COOCASE logo that won't peel off.",
-    plasticAcc:
-      "Optional accessories for plastic top cases: backrest pads in three sizes, inner liners in six sizes and LED brake lights.",
-    display:
-      "Showroom display racks for dealers: the Jumbo rack for 7–13 cases, plus 3-, 4- and 6-case stands that assemble and come apart quickly.",
   },
   variantNotes: {
+    keyLock: "Key lock",
+    remote: "Remote control",
     sShape: "S shape",
     quickRelease: "Quick release",
     sideOpen: "Side opening",
@@ -217,22 +184,17 @@ const en = {
   catalog: {
     eyebrow: "Full range",
     title: "Catalog",
-    text: "Keyless cases, racks and touring accessories from the 2026–2027 catalogue. Filter by category or search by model, size or feature.",
+    text: "Aluminium and plastic top cases, side cases and wheeled luggage from the COOCASE range. Filter by category or search by model, size or feature.",
     all: "All",
     results: "{count} products",
-    colourwaysTitle: "Colourways",
-    colourwaysText: "The keyless topcase range in standard colours. Custom designs are available on request.",
   },
   product: {
     overview: "Overview",
     features: "Features",
     sizesTitle: "Sizes & versions",
+    coloursTitle: "Colour options",
     detailsTitle: "Details",
     gallery: "On the road",
-    colourChart: "Colour chart",
-    fitmentTitle: "Rack fitment list",
-    fitmentText: "Ask us for the latest fitment for your motorcycle model.",
-    brandsTitle: "Brands covered",
     inquire: "Inquire about this product",
     related: "You may also like",
     relatedEyebrow: "More in {category}",
@@ -242,17 +204,17 @@ const en = {
     materialFabric: "Technical fabric",
     lockKeyless: "Keyless combination",
     lockKey: "Key lock",
-    lockBoth: "Keyless or push-button",
+    lockBoth: "Keyless or key lock",
     perCase: "per case",
   },
   about: {
     eyebrow: "Our story",
-    title1: "Built in Singapore,",
-    title2: "ridden everywhere",
-    p1: "COOCASE was founded in Singapore in 2006. For nearly two decades we have designed and manufactured premium motorcycle luggage that brings together innovation, security and durability, and our cases are now trusted by riders through distributors across Europe, the Americas, the Middle East and Asia.",
-    p2: "Every COOCASE case goes through rigorous testing. Built from aviation-grade aluminium and engineered for real-world riding, our cases are made to last every journey and give riders the reliability they depend on.",
+    title1: "Engineered for the road,",
+    title2: "ridden worldwide",
+    p1: "Since 2006, COOCASE has designed and manufactured premium motorcycle luggage that brings together innovation, security and durability. Today our cases are trusted by riders through authorised distributors across Europe, the Americas, the Middle East, Asia and Oceania.",
+    p2: "Every case is manufactured in Jiangmen, China, and goes through rigorous testing before it ships. Built from aviation-grade aluminium with German-made hardware and engineered for real-world riding, our cases are made to last every journey and give riders the reliability they depend on.",
     p3: "As motorcycles adopt keyless technology, we believe your cases should too. The COOCASE Keyless Locking System removes the separate key for your top or side case: fast, secure access at the touch of a button. Premium. Stylish. Secure.",
-    statFounded: "Founded in Singapore",
+    statFounded: "Founded",
     statCountries: "Countries served",
     statFactory: "Manufacturing in Jiangmen, China",
     philosophyTitle: "Always Special",
@@ -279,13 +241,15 @@ const en = {
     listTitle: "Locations",
     count: "{count} locations",
     becomeTitle: "Become a COOCASE distributor",
-    becomeText: "Interested in representing COOCASE in your market? Talk to our team about distribution and dealer display options.",
+    becomeText: "Interested in representing COOCASE in your market? Talk to our team about becoming an authorised distributor.",
     becomeCta: "Distributor inquiry",
     email: "Email",
     phone: "Phone",
     website: "Website",
     directions: "Open in maps",
     resetView: "Reset view",
+    searchPlaceholder: "Search country or company…",
+    askLocal: "Ask us about local dealers",
   },
   contact: {
     eyebrow: "Get in touch",
@@ -307,17 +271,17 @@ const en = {
     required: "Required",
   },
   offices: {
-    singapore: { label: "Singapore HQ", name: "VASIX" },
-    europe: { label: "Europe", name: "COOCASE Europe" },
+    singapore: { label: "Singapore office", name: "VASIX" },
+    europe: { label: "Europe · Greece", name: "A. Kioupis & Co. O.E." },
     china: { label: "China", name: "COOCASE Manufacturing" },
   },
   footer: {
-    tagline: "Keyless motorcycle luggage, designed in Singapore since 2006.",
+    tagline: "Keyless motorcycle luggage since 2006.",
     catalog: "Catalog",
     company: "Company",
-    hq: "Singapore HQ",
+    hq: "Singapore office",
     rights: "All rights reserved.",
-    founded: "Founded 2006 · Singapore",
+    founded: "Since 2006",
   },
 };
 

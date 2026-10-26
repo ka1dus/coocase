@@ -39,7 +39,9 @@ export default function CatalogBrowser() {
       if (category && p.category !== category) return false;
       if (!words.length) return true;
       const haystack = [
-        p.model,
+        pt.name(p),
+        typeof p.name === "string" ? "" : p.name.en,
+        ...(p.colours ?? []).map((c) => `${c.code} ${c.label[locale] ?? c.label.en}`),
         p.volume,
         pt.kind(p),
         t.categories[p.category].name,

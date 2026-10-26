@@ -33,7 +33,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Small mono label used across the site ("EST. 2006 · SINGAPORE"). */
+/* Small mono label used across the site ("EST. 2006"). */
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.7rem;

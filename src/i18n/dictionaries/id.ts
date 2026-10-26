@@ -3,8 +3,7 @@ import type { Dictionary } from "./en";
 const id: Dictionary = {
   meta: {
     title: "COOCASE | Bebas Tanpa Kunci",
-    description:
-      "Box motor COOCASE dari aluminium dengan kunci tanpa anak kunci: top box, side box, bracket, dan aksesori. Dirancang sejak 2006 dan dijual melalui distributor di Eropa, Amerika, Timur Tengah, dan Asia.",
+    description: "Top box, side box, dan box beroda motor COOCASE dari aluminium dan plastik dengan kunci tanpa anak kunci. Dirancang dan diproduksi sejak 2006, dijual melalui distributor di Eropa, Amerika, Timur Tengah, Asia, dan Oseania.",
   },
   nav: {
     home: "Beranda",
@@ -36,7 +35,7 @@ const id: Dictionary = {
     imageComingSoon: "Gambar segera hadir",
   },
   home: {
-    badge: "Sejak 2006 · Singapura",
+    badge: "Sejak 2006",
     heroTitle1: "Bebas",
     heroTitle2: "tanpa",
     heroTitle3: "kunci",
@@ -51,7 +50,7 @@ const id: Dictionary = {
       "Sandaran TASS yang dapat disetel",
       "Segel silikon tahan cuaca",
       "Beban maks 10 kg",
-      "15 L – 160 L",
+      "Top box 27 L – 68 L",
       "Baut buatan Jerman",
       "Hadir di 38 negara",
     ],
@@ -64,8 +63,8 @@ const id: Dictionary = {
       { title: "Segel silikon tahan cuaca", text: "Segel silikon di bagian dalam tutup, terlindung dari sinar UV, menahan air dan debu saat hujan maupun di jalan tol." },
     ],
     featuredEyebrow: "Bebas tanpa kunci",
-    featuredTitle: "Seri COO tanpa kunci",
-    featuredText: "Tiga desain, enam ukuran top box dari 30 hingga 65 liter, serta side box tanpa kunci yang serasi.",
+    featuredTitle: "Rangkaian tanpa kunci",
+    featuredText: "Top box, side box, dan box beroda dengan sistem penguncian tanpa kunci COOCASE.",
     anatomyEyebrow: "Fungsionalitas luar biasa",
     anatomyTitle: "Setiap detail dirancang",
     anatomyText:
@@ -74,7 +73,7 @@ const id: Dictionary = {
     categoriesTitle: "Untuk setiap titik pemasangan",
     fullCatalog: "Katalog lengkap",
     networkEyebrow: "Jaringan distribusi global",
-    networkTitle: "Melaju di lima benua",
+    networkTitle: "Ke mana pun Anda berkendara",
     networkText:
       "Produk COOCASE menjangkau pengendara melalui distributor resmi di Eropa, Amerika, Timur Tengah, Asia, dan Oseania.",
     networkCta: "Cari distributor",
@@ -140,12 +139,10 @@ const id: Dictionary = {
     { title: "Interior box", text: "Organizer multi-kantong, lapisan PU padat yang cepat kering, tali X terintegrasi, dan tali penahan tutup." },
   ],
   categories: {
-    "aluminium-topcase": { name: "Top box aluminium", short: "Top box", text: "Top box aluminium tanpa kunci maupun dengan kunci, 30 hingga 65 liter." },
-    "aluminium-sidecase": { name: "Side box aluminium", short: "Side box", text: "Side box tanpa kunci dan klasik 15 hingga 46 liter, termasuk bentuk S." },
+    "aluminium-topcase": { name: "Top box aluminium", short: "Top box", text: "Top box aluminium tanpa kunci maupun dengan kunci, 27 hingga 65 liter, termasuk model sandaran TASS dan buka samping." },
+    "aluminium-sidecase": { name: "Side box aluminium", short: "Side box", text: "Side box aluminium tanpa kunci maupun dengan kunci, 24 hingga 46 liter, plus box dua fungsi 38 liter." },
     "plastic-topcase": { name: "Top box plastik", short: "Top box plastik", text: "Top box ringan dan multifungsi dengan lampu rem LED, 28 hingga 50 liter." },
-    specialty: { name: "Koper khusus", short: "Khusus", text: "Box beroda dan koper aluminium custom hingga 160 liter." },
-    "racks-accessories": { name: "Bracket & aksesori", short: "Bracket & aksesori", text: "Bracket universal dan khusus model, base plate, tas, dan sandaran." },
-    "dealer-display": { name: "Rak display dealer", short: "Rak display", text: "Rak showroom untuk 3 hingga 13 box." },
+    specialty: { name: "Koper khusus", short: "Khusus", text: "Box roda lepas-pasang 48 hingga 68 liter dan koper troli aluminium." },
   },
   kinds: {
     keylessTopcase: "Top box aluminium tanpa kunci",
@@ -154,14 +151,9 @@ const id: Dictionary = {
     sidecase: "Side box aluminium",
     dualUse: "Box aluminium dua fungsi",
     backrestTopcase: "Top box aluminium dengan sandaran yang dapat disetel",
-    reflectiveTopcase: "Top box aluminium reflektif",
-    miniCase: "Box aluminium mini",
     plasticKeyless: "Top box plastik multifungsi",
-    wheelCase: "Koper tanpa kunci dengan roda lepas-pasang",
-    customCase: "Koper aluminium custom",
-    rack: "Sistem bracket",
-    accessory: "Aksesori",
-    display: "Rak display dealer",
+    wheelCase: "Top box aluminium dengan roda lepas-pasang",
+    customCase: "Koper troli aluminium",
   },
   descs: {
     keylessTop:
@@ -174,40 +166,15 @@ const id: Dictionary = {
       "Side box paduan aluminium dengan pelindung sudut multifungsi dan pegangan segitiga aluminium berkualitas, kuat dan mudah dibawa.",
     dualUse:
       "Box dua fungsi yang bisa dipakai sebagai top box maupun side box, dilengkapi pelindung sudut multifungsi dan pegangan segitiga aluminium berkualitas.",
-    stampingC:
-      "Sistem tanpa kunci seri COO dengan panel samping bermotif 'C' timbul: desain mencolok dengan ketangguhan khas COOCASE. Muat dua helm open-face.",
-    stampingX:
-      "Panel depan bermotif 'X' timbul memberi top box berkunci ini tampilan teknis yang tegas. Kapasitas besar untuk dua helm open-face, dengan lapisan dalam peredam yang sama seperti seri COO.",
     tass:
       "TASS — Tour Active Spine Support. Top box pertama di dunia dengan sandaran terintegrasi yang dapat disetel, dirancang untuk kenyamanan pembonceng. Tersedia dengan tutup standar atau buka samping.",
-    reflective:
-      "Top box aluminium berbalut grafis reflektif yang menyala terkena lampu kendaraan di malam hari. Pilihan desain peta dunia, Jepang, kamuflase, dan bunga.",
-    mini:
-      "Box aluminium ringkas untuk skuter, motor kecil, dan armada, dengan pelindung sudut dan pegangan segitiga aluminium. Tersedia versi quick release dan ukuran bisa dipesan khusus.",
-    plastic:
-      "Top box plastik multifungsi dengan lampu rem LED, segel tahan air, dan cangkang tahan benturan. Pilih versi kombinasi tanpa kunci atau versi tombol dengan remote.",
+    plastic: "Top box plastik multifungsi dengan lampu rem LED, segel tahan air, dan cangkang tahan benturan. Tersedia dengan kunci kombinasi tanpa anak kunci atau kunci biasa; model tertentu juga hadir dalam versi remote.",
     wheel:
       "Roda lepas-pasang dan gagang troli mengubah top box tanpa kunci COOCASE menjadi koper, sehingga barang berat mudah ditarik setelah perjalanan jauh.",
-    custom2:
-      "Koper aluminium custom: koper kabin, koper 90 L yang muat dua box 45 L, dan Special Series 160 L dengan busa peredam untuk hingga empat helm.",
-    universalRacks:
-      "Solusi pemasangan universal: pelat adaptor Tipe A, braket side rack Tipe B, kit Tipe C untuk memasang box tanpa kunci COOCASE pada side rack (termasuk merek Italia), dan Tipe D.",
-    sideRack:
-      "Side rack multifungsi U-03 dari baja tahan karat (perak) atau baja (hitam), mudah dibongkar pasang pada sebagian besar motor.",
-    modelRacks:
-      "Top rack, side rack, dan crash bar khusus model untuk merek motor utama. Kami terus mengembangkan bracket untuk model baru agar setiap pengendara mendapat pemasangan yang kokoh dan pas untuk COOCASE mereka.",
-    basePlates:
-      "Base plate dan kunci untuk setiap lini top box COOCASE: Q-J2, Q-J2-Stamping-C, Q-J2-Stamping-X, Q-J2-Economic, dan X-Series. Base plate generasi baru untuk keluarga Q-J2.",
-    bags:
-      "Tas dalam lepas-pasang pas sempurna di dalam box, melindungi barang dan mengurangi bunyi serta getaran. Tas pembatas memaksimalkan setiap liter.",
-    backrests:
-      "Sandaran premium dan ekonomis untuk kenyamanan pembonceng, plus dudukan sandaran yang dapat disetel (AB). Logo COOCASE pada sandaran premium terpasang kuat dan tidak mudah lepas.",
-    plasticAcc:
-      "Aksesori opsional untuk top box plastik: bantalan sandaran dalam tiga ukuran, lapisan dalam dalam enam ukuran, dan lampu rem LED.",
-    display:
-      "Rak display showroom untuk dealer: rak Jumbo untuk 7–13 box, serta rak 3, 4, dan 6 box yang cepat dirakit dan dibongkar.",
   },
   variantNotes: {
+    keyLock: "Kunci",
+    remote: "Remote",
     sShape: "Bentuk S",
     quickRelease: "Quick release",
     sideOpen: "Buka samping",
@@ -219,22 +186,17 @@ const id: Dictionary = {
   catalog: {
     eyebrow: "Semua produk",
     title: "Katalog",
-    text: "Box tanpa kunci, bracket, dan aksesori touring dari katalog 2026–2027. Saring berdasarkan kategori atau cari berdasarkan model, ukuran, atau fitur.",
+    text: "Top box, side box, dan box beroda aluminium serta plastik dari rangkaian COOCASE. Saring berdasarkan kategori atau cari berdasarkan model, ukuran, atau fitur.",
     all: "Semua",
     results: "{count} produk",
-    colourwaysTitle: "Pilihan warna",
-    colourwaysText: "Rangkaian top box tanpa kunci dalam warna standar. Desain custom tersedia sesuai permintaan.",
   },
   product: {
     overview: "Ringkasan",
     features: "Fitur",
     sizesTitle: "Ukuran & versi",
+    coloursTitle: "Pilihan warna",
     detailsTitle: "Detail",
     gallery: "Di jalan",
-    colourChart: "Daftar warna",
-    fitmentTitle: "Daftar kecocokan bracket",
-    fitmentText: "Tanyakan kepada kami kecocokan terbaru untuk model motor Anda.",
-    brandsTitle: "Merek yang didukung",
     inquire: "Tanyakan produk ini",
     related: "Anda mungkin juga suka",
     relatedEyebrow: "Lainnya di {category}",
@@ -244,17 +206,17 @@ const id: Dictionary = {
     materialFabric: "Kain teknis",
     lockKeyless: "Kombinasi tanpa kunci",
     lockKey: "Kunci dengan anak kunci",
-    lockBoth: "Tanpa kunci atau tombol",
+    lockBoth: "Tanpa kunci atau kunci",
     perCase: "per box",
   },
   about: {
     eyebrow: "Kisah kami",
-    title1: "Lahir di Singapura,",
-    title2: "melaju ke seluruh dunia",
-    p1: "COOCASE didirikan di Singapura pada tahun 2006. Selama hampir dua dekade kami merancang dan memproduksi box motor premium yang memadukan inovasi, keamanan, dan daya tahan, dan kini dipercaya pengendara melalui distributor di Eropa, Amerika, Timur Tengah, dan Asia.",
-    p2: "Setiap box COOCASE melalui pengujian ketat. Terbuat dari aluminium kelas penerbangan dan dirancang untuk kondisi jalan nyata, box kami dibuat untuk bertahan di setiap perjalanan dan memberi keandalan yang dibutuhkan pengendara.",
+    title1: "Dirancang untuk jalanan,",
+    title2: "dipakai di seluruh dunia",
+    p1: "Sejak 2006, COOCASE merancang dan memproduksi box motor premium yang memadukan inovasi, keamanan, dan daya tahan. Kini box kami dipercaya pengendara melalui distributor resmi di Eropa, Amerika, Timur Tengah, Asia, dan Oseania.",
+    p2: "Setiap box diproduksi di Jiangmen, Tiongkok, dan melalui pengujian ketat sebelum dikirim. Terbuat dari aluminium kelas penerbangan dengan komponen buatan Jerman dan dirancang untuk kondisi jalan nyata, box kami dibuat untuk bertahan di setiap perjalanan.",
     p3: "Ketika motor beralih ke teknologi tanpa kunci, box Anda pun seharusnya begitu. Sistem penguncian tanpa kunci COOCASE menghilangkan anak kunci terpisah untuk top box atau side box: akses cepat dan aman dengan satu sentuhan. Premium. Stylish. Aman.",
-    statFounded: "Didirikan di Singapura",
+    statFounded: "Tahun berdiri",
     statCountries: "Negara terlayani",
     statFactory: "Produksi di Jiangmen, Tiongkok",
     philosophyTitle: "Always Special",
@@ -281,13 +243,15 @@ const id: Dictionary = {
     listTitle: "Lokasi",
     count: "{count} lokasi",
     becomeTitle: "Menjadi distributor COOCASE",
-    becomeText: "Tertarik mewakili COOCASE di pasar Anda? Bicarakan peluang distribusi dan rak display dealer dengan tim kami.",
+    becomeText: "Tertarik mewakili COOCASE di pasar Anda? Bicarakan dengan tim kami untuk menjadi distributor resmi.",
     becomeCta: "Pengajuan distributor",
     email: "Email",
     phone: "Telepon",
     website: "Situs web",
     directions: "Buka di peta",
     resetView: "Atur ulang tampilan",
+    searchPlaceholder: "Cari negara atau perusahaan…",
+    askLocal: "Tanyakan dealer terdekat",
   },
   contact: {
     eyebrow: "Hubungi kami",
@@ -309,17 +273,17 @@ const id: Dictionary = {
     required: "Wajib",
   },
   offices: {
-    singapore: { label: "Kantor pusat Singapura", name: "VASIX" },
-    europe: { label: "Eropa", name: "COOCASE Europe" },
+    singapore: { label: "Kantor Singapura", name: "VASIX" },
+    europe: { label: "Eropa · Yunani", name: "A. Kioupis & Co. O.E." },
     china: { label: "Tiongkok", name: "COOCASE Manufacturing" },
   },
   footer: {
-    tagline: "Box motor tanpa kunci, dirancang di Singapura sejak 2006.",
+    tagline: "Box motor tanpa kunci sejak 2006.",
     catalog: "Katalog",
     company: "Perusahaan",
-    hq: "Kantor pusat Singapura",
+    hq: "Kantor Singapura",
     rights: "Hak cipta dilindungi.",
-    founded: "Didirikan 2006 · Singapura",
+    founded: "Sejak 2006",
   },
 };
 

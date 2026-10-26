@@ -33,7 +33,7 @@ export default function ContactForm() {
       interest === "distributor"
         ? t.contact.distributor
         : product
-          ? `${product.model} — ${pt.kind(product)}`
+          ? `${pt.name(product)} — ${pt.kind(product)}`
           : t.contact.general;
     const line = (label: string, key: string) => (f.get(key) ? [`${label}: ${f.get(key)}`] : []);
     const body = [
@@ -77,7 +77,7 @@ export default function ContactForm() {
           <option value="distributor">{t.contact.distributor}</option>
           {products.map((p) => (
             <option key={p.slug} value={p.slug}>
-              {p.model} — {pt.kind(p)}
+              {pt.name(p)}
             </option>
           ))}
         </select>
