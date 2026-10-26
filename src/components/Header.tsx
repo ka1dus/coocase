@@ -27,7 +27,18 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [scrolled, setScrolled] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Pages that open with a dark hero: the header floats transparently over it until you scroll.
+  const darkHero = ["", "/products", "/distributors", "/contact", "/about"].some((p) => pathname === href(locale, p || "/"));
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  const overlay = darkHero && !scrolled && !menuOpen && !searchOpen;
 
   const links = [
     { path: "/", label: t.nav.home },
@@ -55,10 +66,14 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-[1000] border-b border-brand-line bg-brand-white/95 backdrop-blur">
+    <header
+      className={`sticky top-0 z-[1000] border-b transition-colors duration-300 ${
+        overlay ? "border-transparent bg-transparent text-brand-white" : "border-brand-line bg-brand-white/95 text-brand-carbon backdrop-blur"
+      }`}
+    >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Link href={href(locale)} aria-label="COOCASE home">
-          <Logo />
+          <Logo dark={overlay} />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
@@ -67,7 +82,7 @@ export default function Header() {
               key={l.path}
               href={href(locale, l.path)}
               className={`font-mono text-xs uppercase tracking-[0.2em] transition-colors hover:text-brand-red ${
-                isActive(l.path) ? "text-brand-red" : "text-brand-carbon"
+                isActive(l.path) ? "text-brand-red" : ""
               }`}
             >
               {l.label}
@@ -79,7 +94,7 @@ export default function Header() {
           <button
             aria-label={t.nav.search}
             onClick={() => setSearchOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center text-brand-carbon transition-colors hover:text-brand-red"
+            className="flex h-10 w-10 items-center justify-center transition-colors hover:text-brand-red"
           >
             <Search size={20} />
           </button>
@@ -88,7 +103,7 @@ export default function Header() {
             aria-label={t.nav.menu}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center text-brand-carbon lg:hidden"
+            className="flex h-10 w-10 items-center justify-center lg:hidden"
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>

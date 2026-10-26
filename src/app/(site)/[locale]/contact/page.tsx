@@ -16,7 +16,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const heading = "font-mono text-[11px] uppercase tracking-[0.25em]";
   return (
     <>
-      <PageHero eyebrow={t.contact.eyebrow} title={t.contact.title} text={t.contact.text} />
+      <PageHero eyebrow={t.contact.eyebrow} title={t.contact.title} text={t.contact.text} image="/images/life/expo.webp" />
       <Container className="grid gap-12 py-12 sm:py-16 lg:grid-cols-[1fr_1.4fr]">
         <div>
           <h2 className={heading}>{t.contact.direct}</h2>

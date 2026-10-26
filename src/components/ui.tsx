@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -54,13 +55,27 @@ export function ButtonLink({
   );
 }
 
-export function PageHero({ eyebrow, title, text }: { eyebrow: string; title: string; text?: string }) {
+export function PageHero({
+  eyebrow,
+  title,
+  text,
+  image = "/images/life/fuji-lake.webp",
+}: {
+  eyebrow: string;
+  title: string;
+  text?: string;
+  /** Background photo, shown darkened behind the title. */
+  image?: string;
+}) {
   return (
-    <section className="border-b border-brand-line bg-brand-mist">
-      <Container className="py-14 sm:py-20">
-        <p className="eyebrow">{eyebrow}</p>
-        <h1 className="mt-3 font-display text-4xl font-bold uppercase sm:text-5xl">{title}</h1>
-        {text && <p className="mt-4 max-w-2xl leading-relaxed text-brand-steel">{text}</p>}
+    <section className="relative -mt-16 overflow-hidden bg-brand-carbon pt-16 text-brand-white">
+      <Image src={image} alt="" fill priority sizes="100vw" className="animate-kenburns object-cover opacity-25 blur-[2px]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-carbon via-brand-carbon/85 to-brand-carbon/30" />
+      <div className="absolute inset-y-0 right-0 hidden w-1/4 bg-brand-red/90 clip-slant md:block" aria-hidden />
+      <Container className="relative py-20 sm:py-28">
+        <p className="eyebrow rule">{eyebrow}</p>
+        <h1 className="mt-4 max-w-3xl animate-rise font-display text-5xl font-bold uppercase leading-[0.92] sm:text-7xl">{title}</h1>
+        {text && <p className="mt-6 max-w-2xl text-lg leading-relaxed text-brand-white/65">{text}</p>}
       </Container>
     </section>
   );

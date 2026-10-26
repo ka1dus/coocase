@@ -64,10 +64,10 @@ export default function ProductDetail({ product, related }: { product: Product; 
           <ArrowLeft size={14} /> {t.common.backToCatalog}
         </Link>
 
-        <div className="mt-8 grid gap-12 lg:grid-cols-2">
+        <div className="mt-8 grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
           {/* Gallery */}
           <div>
-            <div className="group relative aspect-square w-full overflow-hidden border border-brand-line bg-white">
+            <div className="stage group relative aspect-[4/3] w-full overflow-hidden">
               {current ? (
                 <button onClick={() => lightbox.open(active)} className="absolute inset-0" aria-label={t.common.zoom}>
                   <ProductImage
@@ -76,7 +76,7 @@ export default function ProductDetail({ product, related }: { product: Product; 
                     category={product.category}
                     priority
                     sizes="(min-width: 1024px) 50vw, 100vw"
-                    className="object-contain p-8"
+                    className="object-contain"
                   />
                   <span className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-brand-carbon/80 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-brand-white opacity-0 transition-opacity group-hover:opacity-100">
                     <Maximize2 size={12} /> {t.common.zoom}
@@ -104,21 +104,21 @@ export default function ProductDetail({ product, related }: { product: Product; 
                     key={g.src}
                     onClick={() => setActive(i)}
                     aria-label={g.caption ?? `Image ${i + 1}`}
-                    className={`relative aspect-square overflow-hidden border bg-white transition-colors ${
-                      i === active ? "border-brand-red" : "border-brand-line hover:border-brand-carbon"
+                    className={`stage relative aspect-[4/3] overflow-hidden border-2 transition-colors ${
+                      i === active ? "border-brand-red" : "border-transparent opacity-70 hover:opacity-100"
                     }`}
                   >
-                    <ProductImage src={g.src} alt="" category={product.category} sizes="96px" className="object-contain p-1" />
+                    <ProductImage src={g.src} alt="" category={product.category} sizes="120px" className="object-cover" />
                   </button>
                 ))}
               </div>
             )}
           </div>
 
-          {/* Info */}
-          <div>
+          {/* Info — stays in view while the gallery scrolls */}
+          <div className="lg:sticky lg:top-24 lg:self-start">
             <p className="eyebrow">{t.categories[product.category].name}</p>
-            <h1 className="mt-3 font-display text-4xl font-bold uppercase leading-none sm:text-5xl">{title}</h1>
+            <h1 className="mt-3 font-display text-4xl font-bold uppercase leading-[0.95] sm:text-6xl">{title}</h1>
             <p className="mt-2 text-lg text-brand-steel">{kind}</p>
             <p className="mt-6 leading-relaxed text-brand-carbon/80">{pt.desc(product)}</p>
 
@@ -183,7 +183,7 @@ export default function ProductDetail({ product, related }: { product: Product; 
               {product.variants.map((v, i) => {
                 const tile = (
                   <>
-                    <div className="relative aspect-[4/3] bg-white">
+                    <div className="stage relative aspect-[4/3]">
                       <ProductImage
                         src={v.image}
                         alt={variantLabel(v)}
@@ -230,7 +230,7 @@ export default function ProductDetail({ product, related }: { product: Product; 
                   onClick={() => colourLightbox.open(i)}
                   className="border border-brand-line bg-brand-white text-left transition-colors hover:border-brand-carbon"
                 >
-                  <div className="relative aspect-square bg-white">
+                  <div className="stage relative aspect-square">
                     <ProductImage src={c.image} alt={localize(locale, c.label)} category={product.category} sizes="(min-width: 1024px) 12vw, 33vw" className="object-contain p-2" />
                   </div>
                   <div className="border-t border-brand-line px-2 py-2">

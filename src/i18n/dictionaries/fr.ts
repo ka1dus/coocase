@@ -33,6 +33,9 @@ const fr: Dictionary = {
       "Le mécanisme à double verrouillage, le dosseret réglable et la serrure mécanique sans clé sont des produits brevetés. Reproduction interdite.",
     zoom: "Cliquer pour agrandir",
     imageComingSoon: "Image bientôt disponible",
+    discover: "Découvrir",
+    previous: "Précédent",
+    next: "Suivant",
   },
   home: {
     badge: "Depuis 2006",

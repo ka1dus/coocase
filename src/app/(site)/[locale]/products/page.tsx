@@ -13,7 +13,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
   const { t } = await resolveLocale(params);
   return (
     <>
-      <PageHero eyebrow={t.catalog.eyebrow} title={t.catalog.title} text={t.catalog.text} />
+      <PageHero eyebrow={t.catalog.eyebrow} title={t.catalog.title} text={t.catalog.text} image="/images/life/sakura-side.webp" />
       <Container className="py-12 sm:py-16">
         <Suspense>
           <CatalogBrowser />

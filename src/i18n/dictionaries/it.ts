@@ -33,6 +33,9 @@ const it: Dictionary = {
       "Il meccanismo a doppia chiusura, lo schienale regolabile e la serratura meccanica senza chiave sono prodotti brevettati. Vietata la copia.",
     zoom: "Clicca per ingrandire",
     imageComingSoon: "Immagine in arrivo",
+    discover: "Scopri",
+    previous: "Precedente",
+    next: "Successivo",
   },
   home: {
     badge: "Dal 2006",

@@ -34,6 +34,9 @@ const es: Dictionary = {
       "El mecanismo de doble bloqueo, el respaldo ajustable y el cierre mecánico sin llave son productos patentados. Prohibida su copia.",
     zoom: "Clic para ampliar",
     imageComingSoon: "Imagen próximamente",
+    discover: "Descubrir",
+    previous: "Anterior",
+    next: "Siguiente",
   },
   home: {
     badge: "Desde 2006",

@@ -16,6 +16,20 @@
   --font-mono: var(--font-plex-mono), ui-monospace, "PingFang SC", "Hiragino Sans", monospace;
 
   --animate-marquee: marquee 40s linear infinite;
+  --animate-kenburns: kenburns 24s ease-out both;
+  --animate-rise: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  @keyframes kenburns {
+    from { transform: scale(1.12); }
+    to { transform: scale(1); }
+  }
+  @keyframes fill-bar {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: none; }
+  }
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
@@ -48,6 +62,29 @@ body {
   letter-spacing: 0.1em;
 }
 
+/* Studio "stage" behind product photos — matches the grey backdrop of the supplier shots. */
+.stage {
+  background: radial-gradient(ellipse at 50% 45%, #e4e5e5 0%, #d4d5d5 55%, #c4c5c5 100%);
+}
+
+/* Thin red rule used before section labels. */
+.rule::before {
+  content: "";
+  display: inline-block;
+  width: 2rem;
+  height: 1px;
+  margin-right: 0.75rem;
+  vertical-align: middle;
+  background: currentColor;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 .clip-slant {
   clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
 }
@@ -69,7 +106,9 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee,
+  .animate-kenburns,
+  .animate-rise {
     animation: none;
   }
   html {

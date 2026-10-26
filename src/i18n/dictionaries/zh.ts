@@ -32,6 +32,9 @@ const zh: Dictionary = {
     patentNotice: "双重锁定机构、可调节靠背及无钥匙机械锁机构均为专利产品，抄袭必究。",
     zoom: "点击放大",
     imageComingSoon: "图片即将上线",
+    discover: "了解更多",
+    previous: "上一个",
+    next: "下一个",
   },
   home: {
     badge: "始于 2006",

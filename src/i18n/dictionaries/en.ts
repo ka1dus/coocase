@@ -31,6 +31,9 @@ const en = {
       "Double-locking mechanism, adjustable backrest and keyless mechanical locking mechanism are patent-protected products. Do not copy.",
     zoom: "Click to enlarge",
     imageComingSoon: "Image coming soon",
+    discover: "Discover",
+    previous: "Previous",
+    next: "Next",
   },
   home: {
     badge: "Est. 2006",

@@ -32,6 +32,9 @@ const ja: Dictionary = {
     patentNotice: "ダブルロック機構、アジャスタブルバックレスト、キーレス機械式ロック機構は特許取得製品です。模倣を禁じます。",
     zoom: "クリックで拡大",
     imageComingSoon: "画像は近日公開",
+    discover: "詳しく見る",
+    previous: "前へ",
+    next: "次へ",
   },
   home: {
     badge: "2006 年創業",

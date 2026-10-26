@@ -33,6 +33,9 @@ const id: Dictionary = {
       "Mekanisme penguncian ganda, sandaran yang dapat disetel, dan mekanisme kunci mekanis tanpa anak kunci adalah produk yang dilindungi paten. Dilarang meniru.",
     zoom: "Klik untuk memperbesar",
     imageComingSoon: "Gambar segera hadir",
+    discover: "Lihat",
+    previous: "Sebelumnya",
+    next: "Berikutnya",
   },
   home: {
     badge: "Sejak 2006",

@@ -17,12 +17,13 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
   return (
     <>
-      <section className="relative overflow-hidden bg-brand-carbon text-brand-white">
-        <Image src="/images/life/sakura-cover.webp" alt="" fill priority sizes="100vw" className="object-cover opacity-25" />
+      <section className="relative -mt-16 overflow-hidden bg-brand-carbon pt-16 text-brand-white">
+        <Image src="/images/life/sakura-cover.webp" alt="" fill priority sizes="100vw" className="animate-kenburns object-cover opacity-25 blur-[2px]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-carbon via-brand-carbon/80 to-brand-carbon/30" />
         <div className="absolute inset-y-0 right-0 hidden w-1/3 bg-brand-red clip-slant md:block" aria-hidden />
         <Container className="relative py-20 sm:py-28">
-          <p className="eyebrow">{t.about.eyebrow}</p>
-          <h1 className="mt-4 font-display text-5xl font-bold uppercase leading-[0.95] sm:text-6xl">
+          <p className="eyebrow rule">{t.about.eyebrow}</p>
+          <h1 className="mt-4 animate-rise font-display text-5xl font-bold uppercase leading-[0.92] sm:text-7xl">
             {t.about.title1}
             <br />
             {t.about.title2}

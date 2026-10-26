@@ -40,7 +40,7 @@ function Switcher() {
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label={`${t.nav.language}: ${localeNames[locale].native}`}
-        className="flex h-10 items-center gap-1.5 px-2 text-brand-carbon transition-colors hover:text-brand-red"
+        className="flex h-10 items-center gap-1.5 px-2 transition-colors hover:text-brand-red"
       >
         <Globe size={18} />
         <span className="font-mono text-xs uppercase tracking-widest">{locale}</span>

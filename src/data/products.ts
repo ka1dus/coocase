@@ -97,7 +97,7 @@ export const categoryImages: Partial<Record<CategoryId, string>> = {
   "aluminium-topcase": "/products/keyless-aluminium-top-case/g01.webp",
   "aluminium-sidecase": "/products/key-aluminium-side-cases/g02.webp",
   "plastic-topcase": "/products/plastic-astra-s48/keyless.webp",
-  specialty: "/products/keyless-wheel-top-case/g01.webp",
+  specialty: "/products/keyless-wheel-top-case/g04.webp",
 };
 
 /**
@@ -368,7 +368,7 @@ export const products: Product[] = [
     category: "specialty",
     kind: "wheelCase",
     desc: "wheel",
-    images: [photo("keyless-wheel-top-case", "g01"), photo("keyless-wheel-top-case", "58l"), ...gallery("keyless-wheel-top-case", 9).slice(1)],
+    images: [photo("keyless-wheel-top-case", "58l"), photo("keyless-wheel-top-case", "g01"), ...gallery("keyless-wheel-top-case", 9).slice(1)],
     volume: "48 / 58 / 68 L",
     maxLoadKg: 10,
     material: "aluminium",
@@ -384,7 +384,7 @@ export const products: Product[] = [
     category: "specialty",
     kind: "wheelCase",
     desc: WHEEL_KEY,
-    images: [photo("key-wheel-top-case", "g01"), photo("key-wheel-top-case", "48l"), ...gallery("key-wheel-top-case", 10).slice(1)],
+    images: [photo("key-wheel-top-case", "g03"), photo("key-wheel-top-case", "g01"), photo("key-wheel-top-case", "48l"), photo("key-wheel-top-case", "g02"), ...gallery("key-wheel-top-case", 10).slice(3)],
     volume: "48 / 58 / 68 L",
     maxLoadKg: 10,
     material: "aluminium",
@@ -399,7 +399,7 @@ export const products: Product[] = [
     category: "specialty",
     kind: "customCase",
     desc: LUGGAGE,
-    images: [photo("aluminium-luggage-case", "main"), ...gallery("aluminium-luggage-case", 12)],
+    images: [photo("aluminium-luggage-case", "g05"), photo("aluminium-luggage-case", "g04"), photo("aluminium-luggage-case", "main"), ...gallery("aluminium-luggage-case", 12).filter((g) => !/g0[45]/.test(g))],
     material: "aluminium",
     features: ["aviationAluminium", "camo", "customisable"],
     badge: "camo",
