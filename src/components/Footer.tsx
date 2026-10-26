@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { Facebook, Instagram, Youtube } from "lucide-react";
 import { useI18n } from "@/i18n/provider";
 import { href } from "@/lib/paths";
 import { categoryOrder } from "@/data/products";
@@ -19,24 +18,6 @@ export default function Footer() {
         <div>
           <Logo dark />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-brand-white/60">{t.footer.tagline}</p>
-          <div className="mt-6 flex gap-3">
-            {[
-              { href: company.social.facebook, Icon: Facebook, label: "Facebook" },
-              { href: company.social.instagram, Icon: Instagram, label: "Instagram" },
-              { href: company.social.youtube, Icon: Youtube, label: "YouTube" },
-            ].map(({ href: h, Icon, label }) => (
-              <a
-                key={label}
-                href={h}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={label}
-                className="flex h-9 w-9 items-center justify-center border border-brand-white/15 text-brand-white/70 transition-colors hover:border-brand-red hover:text-brand-red"
-              >
-                <Icon size={16} />
-              </a>
-            ))}
-          </div>
         </div>
 
         <div>

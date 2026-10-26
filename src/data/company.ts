@@ -5,11 +5,6 @@ export const company = {
   website: "https://www.coocase.com",
   founded: 2006,
   countries: 38,
-  social: {
-    facebook: "https://facebook.com/coocase",
-    instagram: "https://instagram.com/coocase",
-    youtube: "https://youtube.com/@coocase",
-  },
   offices: [
     { key: "singapore", address: "590 Serangoon Road, Singapore 218204", email: "fredafeng@coocase.com.cn" },
     { key: "europe", address: "38 Marathonos str., GR 104 36 Athens, Greece" },
